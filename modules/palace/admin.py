@@ -3,7 +3,7 @@ from django.contrib import admin
 from mptt.admin import DraggableMPTTAdmin
 
 # Register your models here.
-from modules.palace.models import City, Country, Language, Province, Template, Department, Palace, LanguageCaption
+from modules.palace.models import City, Country, Language, Province, Department, Palace, LanguageCaption
 
 
 @admin.register(Palace)
@@ -12,12 +12,6 @@ class PalaceAdmin(DraggableMPTTAdmin):
     list_filter = ["status", "city__province"]
 
     expand_tree_by_default = True
-
-
-@admin.register(Template)
-class TemplateAdmin(admin.ModelAdmin):
-    list_display = ["title", "language"]
-    list_filter = ["language"]
 
 
 @admin.register(Department)
