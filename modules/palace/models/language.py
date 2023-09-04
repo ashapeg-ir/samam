@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.manager import BaseManager
 from django.utils.translation import gettext_lazy as _
 
-from django_extensions.db.models import TimeStampedModel
+from modules.common.models import OrganizationModelMixin, TimestampedModelMixin
 from modules.palace.models import Palace
 
 
@@ -28,7 +28,7 @@ class Language(models.Model):
         return f"{self.title}-{self.code}"
 
 
-class LanguageCaption(TimeStampedModel, models.Model):
+class LanguageCaption(OrganizationModelMixin, TimestampedModelMixin, models.Model):
     title = models.TextField(verbose_name=_("title"))
     language = models.ForeignKey(Language, on_delete=models.CASCADE, verbose_name=_("language"))
     palace = models.ForeignKey(Palace, on_delete=models.CASCADE, verbose_name=_("palace"))
