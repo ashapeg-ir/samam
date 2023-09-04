@@ -8,11 +8,10 @@ from django.utils.translation import gettext_lazy as _
 import environ
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-# samam/
 APPS_DIR = ROOT_DIR / "samam"
 env = environ.Env()
-PROJECT_NAME = "samam"
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
+
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
     env.read_env(str(ROOT_DIR / ".env"))
@@ -27,7 +26,7 @@ DEBUG = env.bool("DJANGO_DEBUG", True)
 # In Windows, this must be set to your system time zone.
 TIME_ZONE = "asia/tehran"
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = "fa-ir"
+LANGUAGE_CODE = "fa"
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
