@@ -93,6 +93,19 @@ class UserModelMixin(models.Model):
         abstract = True
 
 
+class CustomerModelMixin(models.Model):
+    """
+    Abstract base class for models that have a user as a foreign key.
+    """
+
+    customer = models.ForeignKey(
+        "hrm.User", on_delete=models.CASCADE, related_name="%(class)ss", limit_choices_to={"is_customer": True}
+    )
+
+    class Meta:
+        abstract = True
+
+
 class OrganizationModelMixin(models.Model):
     organization = models.ForeignKey(
         "palace.Organization", on_delete=models.CASCADE, related_name="%(class)ss"

@@ -1,14 +1,14 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from django_extensions.db.models import ActivatorModel, TimeStampedModel
+from modules.common.models import CustomerModelMixin, TimestampedModelMixin
 
 
-class Country(TimeStampedModel, ActivatorModel, models.Model):
+class Country(TimestampedModelMixin, CustomerModelMixin):
     name = models.CharField(max_length=200)
 
     class Meta:
-        # db_table = "country"
+        db_table = "samam_country"
         verbose_name = _("Country")
         verbose_name_plural = _("Countries")
 
@@ -16,13 +16,12 @@ class Country(TimeStampedModel, ActivatorModel, models.Model):
         return self.name.name
 
 
-class Province(TimeStampedModel, models.Model):
+class Province(TimestampedModelMixin, CustomerModelMixin):
     name = models.CharField(max_length=255, verbose_name=_("name"))
     country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name=_("country"))
-    is_active = models.BooleanField(default=True, verbose_name=_("is active"))
 
     class Meta:
-        db_table = "province"
+        db_table = "samam_province"
         verbose_name = _("Province")
         verbose_name_plural = _("Provinces")
 
@@ -30,13 +29,12 @@ class Province(TimeStampedModel, models.Model):
         return self.name
 
 
-class City(TimeStampedModel, models.Model):
+class City(TimestampedModelMixin, CustomerModelMixin):
     name = models.CharField(max_length=255, verbose_name=_("name"))
     province = models.ForeignKey(Province, on_delete=models.CASCADE, verbose_name=_("province"))
-    is_active = models.BooleanField(default=True, verbose_name=_("is active"))
 
     class Meta:
-        db_table = "city"
+        db_table = "samam_city"
         verbose_name = _("City")
         verbose_name_plural = _("Cities")
 

@@ -2,8 +2,7 @@ from django.db import models
 from django.db.models.manager import BaseManager
 from django.utils.translation import gettext_lazy as _
 
-from modules.common.models import OrganizationModelMixin, TimestampedModelMixin
-from modules.palace.models import Palace
+from modules.common.models import CustomerModelMixin, TimestampedModelMixin, OrganizationModelMixin
 
 
 class LanguageCaptionManager(BaseManager):
@@ -15,28 +14,19 @@ class LanguageCaptionManager(BaseManager):
         return value
 
 
-class Language(models.Model):
-    title = models.CharField(max_length=255, unique=True, verbose_name=_("title"))
-    code = models.CharField(max_length=5)
-
-    class Meta:
-        db_table = "language"
-        verbose_name = _("Language")
-        verbose_name_plural = _("Languages")
-
-    def __str__(self):
-        return f"{self.title}-{self.code}"
-
-
-class LanguageCaption(OrganizationModelMixin, TimestampedModelMixin, models.Model):
+class LanguageCaption(CustomerModelMixin, OrganizationModelMixin, TimestampedModelMixin, models.Model):
     title = models.TextField(verbose_name=_("title"))
-    language = models.ForeignKey(Language, on_delete=models.CASCADE, verbose_name=_("language"))
-    palace = models.ForeignKey(Palace, on_delete=models.CASCADE, verbose_name=_("palace"))
+    language = models.ForeignKey(
+        "Organization",
+        on_delete=models.CASCADE,
+        verbose_name=_("language"),
+        to_field="language",
+    )
     code = models.IntegerField(verbose_name=_("code"))
     is_editable = models.BooleanField(default=False, verbose_name=_("is editable"))
 
     class Meta:
-        db_table = "language_caption"
+        db_table = "samam_language_caption"
         verbose_name = _("Language Caption")
         verbose_name_plural = _("Language Captions")
 

@@ -1,8 +1,9 @@
 from .abstract import (
-    SoftDeletableModel,
-    OrganizationModelMixin,
     UserModelMixin,
+    CustomerModelMixin,
+    SoftDeletableModel,
+    ActivatedModelMixin,
     UniversalModelMixin,
     TimestampedModelMixin,
-    ActivatedModelMixin,
+    OrganizationModelMixin,
 )

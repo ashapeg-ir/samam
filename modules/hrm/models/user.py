@@ -59,7 +59,6 @@ class User(AbstractUser):
     objects: UserManager = UserManager()  # type: ignore
 
     class Meta:
-        db_table = "hrm_user"
         verbose_name = _("user")
         verbose_name_plural = _("users")
         ordering = ["-date_joined"]
