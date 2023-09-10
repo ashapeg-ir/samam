@@ -4,14 +4,26 @@ from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeManager, TreeForeignKey
 from model_utils.models import SoftDeletableModel
 
-from modules.common.models import CustomerModelMixin, ActivatedModelMixin, TimestampedModelMixin
-from modules.palace.models import Palace
+from modules.common.models import PalaceModelMixin, ActivatedModelMixin, TimestampedModelMixin, OrganizationModelMixin
 
 
-class Department(CustomerModelMixin, TimestampedModelMixin,ActivatedModelMixin, SoftDeletableModel, MPTTModel):
-    name = models.CharField(max_length=400, verbose_name=_("name"))
+class Place(OrganizationModelMixin, PalaceModelMixin):
+    name = models.CharField(max_length=250, verbose_name=_("name"))
+
+    class Meta:
+        db_table = "place"
+        verbose_name = _("Place")
+        verbose_name_plural = _("Place")
+
+    def __str__(self):
+        return self.name
+
+
+class Department(PalaceModelMixin, OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin, SoftDeletableModel, MPTTModel):
+    place = models.ForeignKey("Place", on_delete=models.CASCADE, verbose_name=_("place"), related_name="%(class)ss")
+    name = models.CharField(max_length=400, verbose_name=_("name"), blank=True)
     description = models.TextField(blank=True, null=True, verbose_name=_("description"))
-    palace = models.ForeignKey(Palace, on_delete=models.CASCADE, verbose_name=_("palace"))
+    is_private = models.BooleanField(default=False, verbose_name=_("is private"))
     parent = TreeForeignKey(
         'self',
         on_delete=models.CASCADE,
@@ -20,6 +32,17 @@ class Department(CustomerModelMixin, TimestampedModelMixin,ActivatedModelMixin, 
         related_name='children',
         verbose_name=_("parent"),
     )
+
+    email = models.EmailField(verbose_name=_("email"))
+    land_area = models.IntegerField(verbose_name=_("land area"))
+    noble_area = models.IntegerField(verbose_name=_("area of noble"))
+    operation_date = models.DateField(verbose_name=_("operation date"))
+    completion_date = models.DateField(verbose_name=_("completion date"))
+    completion_certificate = models.ImageField(upload_to="palace/completion_certificate")
+
+    website = models.URLField(max_length=300, verbose_name=_("website"), blank=True)
+    postal_code = models.CharField(max_length=15, verbose_name=_("postal code"))
+
     objects = models.Manager()
     tree_manager = TreeManager()
 
@@ -30,3 +53,14 @@ class Department(CustomerModelMixin, TimestampedModelMixin,ActivatedModelMixin, 
 
     def __str__(self):
         return self.name
+
+
+class DepartmentPhone(OrganizationModelMixin, PalaceModelMixin):
+    title = models.CharField(max_length=255, verbose_name=_("title"), blank=False)
+    phone_number = models.CharField(max_length=15, verbose_name=_("palace phone"), blank=False)
+    is_internal = models.BooleanField(default=False, verbose_name=_("is internal phone"))
+
+    class Meta:
+        db_table = "palace_phone"
+        verbose_name = _("Palace Phone")
+        verbose_name_plural = _("Palace Phones")

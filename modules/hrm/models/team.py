@@ -1,12 +1,17 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from modules.common.models import UserModelMixin, OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin
+from modules.common.models import (
+    UserModelMixin,
+    PalaceModelMixin,
+    ActivatedModelMixin,
+    TimestampedModelMixin,
+    OrganizationModelMixin,
+)
 
 
-class Team(OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin):
+class Team(PalaceModelMixin, OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin):
     name = models.CharField(max_length=300)
-    palace = models.ForeignKey("Palace", on_delete=models.CASCADE, related_name="%(class)ss")
 
     class Meta:
         db_table = "team"
@@ -14,8 +19,8 @@ class Team(OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin):
         verbose_name_plural = _("teams")
 
 
-class TeamMembers(UserModelMixin):
-    team = models.ForeignKey("hrm.Team", on_delete=models.CASCADE, related_name="%(class)ss")
+class TeamMembers(PalaceModelMixin, OrganizationModelMixin, UserModelMixin):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="%(class)ss")
 
     class Meta:
         db_table = "team_member"

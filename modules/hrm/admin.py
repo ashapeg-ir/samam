@@ -13,7 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["email", "first_name", "last_name"]
+        fields = ["phone", "email", "first_name", "last_name", "is_customer", "is_superuser", "is_staff", "is_active"]
 
 
 @admin.register(User)
@@ -26,6 +26,8 @@ class CustomUserAdmin(UserAdmin):
             _("Permissions"),
             {
                 "fields": [
+                    "phone",
+                    "is_customer",
                     "is_active",
                     "is_verified",
                     "is_staff",
@@ -43,6 +45,7 @@ class CustomUserAdmin(UserAdmin):
             {
                 "classes": ("wide",),
                 "fields": [
+                    "phone",
                     "email",
                     "first_name",
                     "last_name",

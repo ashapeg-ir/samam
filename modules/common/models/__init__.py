@@ -1,5 +1,6 @@
 from .abstract import (
     UserModelMixin,
+    PalaceModelMixin,
     CustomerModelMixin,
     SoftDeletableModel,
     ActivatedModelMixin,

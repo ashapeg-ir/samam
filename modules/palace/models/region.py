@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from modules.common.models import CustomerModelMixin, TimestampedModelMixin
+from modules.common.models import TimestampedModelMixin, OrganizationModelMixin
 
 
-class Country(TimestampedModelMixin, CustomerModelMixin):
+class Country(TimestampedModelMixin, OrganizationModelMixin):
     name = models.CharField(max_length=200)
 
     class Meta:
@@ -13,10 +13,10 @@ class Country(TimestampedModelMixin, CustomerModelMixin):
         verbose_name_plural = _("Countries")
 
     def __str__(self) -> str:
-        return self.name.name
+        return self.name
 
 
-class Province(TimestampedModelMixin, CustomerModelMixin):
+class Province(TimestampedModelMixin, OrganizationModelMixin):
     name = models.CharField(max_length=255, verbose_name=_("name"))
     country = models.ForeignKey(Country, on_delete=models.CASCADE, verbose_name=_("country"))
 
@@ -29,7 +29,7 @@ class Province(TimestampedModelMixin, CustomerModelMixin):
         return self.name
 
 
-class City(TimestampedModelMixin, CustomerModelMixin):
+class City(TimestampedModelMixin, OrganizationModelMixin):
     name = models.CharField(max_length=255, verbose_name=_("name"))
     province = models.ForeignKey(Province, on_delete=models.CASCADE, verbose_name=_("province"))
 

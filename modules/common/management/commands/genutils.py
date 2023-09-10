@@ -28,14 +28,14 @@ class Command(BaseCommand):
         password: str = "test123",
         first_name: str = "omid",
         last_name: str = "zarinmahd",
-        username="zarinpy",
+        phone="09358588181",
     ):
         # import user here for isolation
         from modules.hrm.models import User
 
         # create the initial superuser for test purposes
         User.objects.create_superuser(
-            email=email, password=password, first_name=first_name, last_name=last_name, username=username
+            email=email, password=password, first_name=first_name, last_name=last_name, phone=phone
         )
 
     def handle(self, *args, **options):

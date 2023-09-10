@@ -115,6 +115,15 @@ class OrganizationModelMixin(models.Model):
         abstract = True
 
 
+class PalaceModelMixin(models.Model):
+    palace = models.ForeignKey(
+        "palace.Palace", on_delete=models.CASCADE, related_name="%(class)ss"
+    )
+
+    class Meta:
+        abstract = True
+
+
 class ActivatedModelMixin(models.Model):
     """Active objects mixin
 

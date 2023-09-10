@@ -14,7 +14,7 @@ class LanguageCaptionManager(BaseManager):
         return value
 
 
-class LanguageCaption(CustomerModelMixin, OrganizationModelMixin, TimestampedModelMixin, models.Model):
+class LanguageCaption(OrganizationModelMixin, TimestampedModelMixin, models.Model):
     title = models.TextField(verbose_name=_("title"))
     language = models.ForeignKey(
         "Organization",
