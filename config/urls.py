@@ -18,8 +18,7 @@ urlpatterns = [
 
 # API URLS
 V1 = [
-    path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('auth/', include('modules.hrm.api.rest.v1.urls'))
 ]
 urlpatterns += [
     path(settings.ADMIN_URL, admin.site.urls),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-26 17:17+0330\n"
+"POT-Creation-Date: 2023-09-12 09:28+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,95 +18,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: config/settings/base.py:40
+#: config/settings/base.py:42
 msgid "English"
 msgstr "انگلیسی"
 
-#: config/settings/base.py:40
+#: config/settings/base.py:42
 msgid "German"
 msgstr "آلمانی"
 
-#: config/settings/base.py:40
-msgid "Farsi"
-msgstr "فارسی"
+#: config/settings/base.py:42
+#, fuzzy
+#| msgid "Personal Info"
+msgid "Persian"
+msgstr "اطلاعات شخصی"
+
+#: modules/admin/apps.py:11
+msgid "Samam admin site"
+msgstr ""
+
+#: modules/admin/apps.py:14
+msgid "Samam admin panel"
+msgstr ""
+
+#: modules/admin/apps.py:17
+msgid "Samam administration"
+msgstr ""
 
 #: modules/common/apps.py:7
 msgid "Common"
 msgstr "اشتراک ها"
 
-#: modules/common/models/language.py:8 modules/common/models/language.py:21
-msgid "title"
-msgstr "عنوان"
+#: modules/common/models/abstract.py:38
+msgid "created at"
+msgstr ""
 
-#: modules/common/models/language.py:13
-msgid "Language"
-msgstr "زبان"
+#: modules/common/models/abstract.py:40
+msgid "This is the timestamp of the object creation."
+msgstr ""
 
-#: modules/common/models/language.py:14
-msgid "Languages"
-msgstr "زبان ها"
+#: modules/common/models/abstract.py:43
+msgid "updated at"
+msgstr ""
 
-#: modules/common/models/language.py:22
-msgid "language"
-msgstr "زبان"
+#: modules/common/models/abstract.py:45
+msgid "This is the timestamp of the object update"
+msgstr ""
 
-#: modules/common/models/language.py:23
-msgid "code"
-msgstr "کد"
+#: modules/common/models/abstract.py:65
+msgid "universal unique id"
+msgstr ""
 
-#: modules/common/models/language.py:24
-msgid "is editable"
-msgstr "قابل ویرایش هست"
+#: modules/common/models/abstract.py:69
+msgid "Universally unique object identifier"
+msgstr ""
 
-#: modules/common/models/language.py:28
-msgid "Language Caption"
-msgstr "ترجمه ها"
-
-#: modules/common/models/language.py:29
-msgid "Language Captions"
-msgstr "ترجمه"
-
-#: modules/common/models/region.py:9 modules/common/models/region.py:21
-#: modules/common/models/region.py:35 modules/palace/models/department.py:11
-#: modules/palace/models/organization.py:10
-msgid "name"
-msgstr "نام "
-
-#: modules/common/models/region.py:13
-msgid "Country"
-msgstr "کشور"
-
-#: modules/common/models/region.py:14
-msgid "Countries"
-msgstr "کشورها"
-
-#: modules/common/models/region.py:22
-msgid "country"
-msgstr "کشور"
-
-#: modules/common/models/region.py:23 modules/common/models/region.py:37
-msgid "is active"
+#: modules/common/models/abstract.py:137
+#, fuzzy
+#| msgid "is active"
+msgid "active"
 msgstr "فعال"
 
-#: modules/common/models/region.py:27
-msgid "Province"
-msgstr "استان"
-
-#: modules/common/models/region.py:28
-msgid "Provinces"
-msgstr "استان ها"
-
-#: modules/common/models/region.py:36
-msgid "province"
-msgstr "استان"
-
-#: modules/common/models/region.py:41
-msgid "City"
-msgstr "شهر"
-
-#: modules/common/models/region.py:42
-msgid "Cities"
-msgstr "شهرها"
+#: modules/common/models/abstract.py:141
+msgid ""
+"Designates if this object should be considered active or not or to simulate "
+"soft delete behaviour."
+msgstr ""
 
 #: modules/hrm/admin.py:24
 msgid "Personal Info"
@@ -116,89 +92,307 @@ msgstr "اطلاعات شخصی"
 msgid "Permissions"
 msgstr "دسترسی ها"
 
-#: modules/hrm/admin.py:38
+#: modules/hrm/admin.py:40
 msgid "Important Dates"
 msgstr "تاریخ های مهم"
 
-#: modules/hrm/admin.py:64
+#: modules/hrm/admin.py:67
 msgid "Full Name"
 msgstr "نام و نام خانوادگی"
+
+#: modules/hrm/api/rest/v1/backends.py:28
+msgid "Your OTP Password has been expired or is wrong"
+msgstr ""
+
+#: modules/hrm/api/rest/v1/backends.py:43
+msgid ""
+"dear user you are not active or you are not part of the system please "
+"contact the administrator."
+msgstr ""
 
 #: modules/hrm/apps.py:7
 msgid "Human Resource Management"
 msgstr "نیروی انسانی"
 
-#: modules/hrm/models/user.py:44
-msgid "email address"
-msgstr "ادرس پست الکترونیکی"
+#: modules/hrm/models/team.py:18
+msgid "team"
+msgstr ""
 
-#: modules/hrm/models/user.py:47
-msgid "A user with this email address already exists."
-msgstr "کاریر با این پست اکترونیکی قبلا وجود داشته"
+#: modules/hrm/models/team.py:19
+msgid "teams"
+msgstr ""
 
-#: modules/hrm/models/user.py:50
+#: modules/hrm/models/team.py:27
+msgid "team member"
+msgstr ""
+
+#: modules/hrm/models/team.py:28
+msgid "team members"
+msgstr ""
+
+#: modules/hrm/models/user.py:42
+msgid "first name"
+msgstr ""
+
+#: modules/hrm/models/user.py:43
+#, fuzzy
+#| msgid "name"
+msgid "last name"
+msgstr "نام "
+
+#: modules/hrm/models/user.py:44 modules/palace/models/palace.py:63
+msgid "phone"
+msgstr ""
+
+#: modules/hrm/models/user.py:46
 msgid "email verified"
 msgstr "ادرس پست الکترونیکی تایید شد"
 
-#: modules/hrm/models/user.py:52
+#: modules/hrm/models/user.py:48
 msgid "Designates if this user's email has been verified."
 msgstr "آدرس پست الکترونیکی تایید شد"
 
-#: modules/hrm/models/user.py:57
-msgid "username"
-msgstr "نام کاربری"
+#: modules/hrm/models/user.py:51
+msgid "is customer"
+msgstr ""
 
-#: modules/hrm/models/user.py:60
-msgid "A user with this username aleady existed."
-msgstr "کاربری با این نام کاربری قبلا ثبت نام کرده"
+#: modules/hrm/models/user.py:53
+msgid "Designates whether the user is customer or not"
+msgstr ""
 
-#: modules/hrm/models/user.py:70
+#: modules/hrm/models/user.py:62
 msgid "user"
 msgstr "کاربر"
 
-#: modules/hrm/models/user.py:71
+#: modules/hrm/models/user.py:63
 msgid "users"
 msgstr "کاربران"
 
-#: modules/palace/apps.py:8
+#: modules/palace/apps.py:8 modules/palace/models/palace.py:74
 msgid "Palace"
 msgstr "کاخ داری"
 
-#: modules/palace/models/department.py:12
+#: modules/palace/models/department.py:11
+#: modules/palace/models/department.py:24 modules/palace/models/palace.py:10
+#: modules/palace/models/palace.py:22 modules/palace/models/palace.py:36
+#: modules/palace/models/region.py:20 modules/palace/models/region.py:33
+msgid "name"
+msgstr "نام "
+
+#: modules/palace/models/department.py:15
+#: modules/palace/models/department.py:16
+#, fuzzy
+#| msgid "Palace"
+msgid "Place"
+msgstr "کاخ داری"
+
+#: modules/palace/models/department.py:23
+#, fuzzy
+#| msgid "Palace"
+msgid "place"
+msgstr "کاخ داری"
+
+#: modules/palace/models/department.py:25
 msgid "description"
 msgstr "توضیحات"
 
-#: modules/palace/models/department.py:13
-msgid "organization"
-msgstr "سازمان"
+#: modules/palace/models/department.py:26 modules/palace/models/palace.py:49
+msgid "is private"
+msgstr ""
 
-#: modules/palace/models/department.py:17
-msgid "Department"
-msgstr "دپارتمان"
-
-#: modules/palace/models/department.py:18
-msgid "Departments"
-msgstr "دپارتمان ها"
-
-#: modules/palace/models/organization.py:11
-msgid "address"
-msgstr "آدرس"
-
-#: modules/palace/models/organization.py:12
+#: modules/palace/models/department.py:33 modules/palace/models/palace.py:44
 msgid "parent"
 msgstr "پدر"
 
-#: modules/palace/models/organization.py:13
-msgid "city"
-msgstr "شهر"
+#: modules/palace/models/department.py:36
+msgid "email"
+msgstr ""
 
-#: modules/palace/models/organization.py:17
+#: modules/palace/models/department.py:37 modules/palace/models/palace.py:51
+msgid "land area"
+msgstr ""
+
+#: modules/palace/models/department.py:38 modules/palace/models/palace.py:52
+msgid "area of noble"
+msgstr ""
+
+#: modules/palace/models/department.py:39 modules/palace/models/palace.py:55
+msgid "operation date"
+msgstr ""
+
+#: modules/palace/models/department.py:40 modules/palace/models/palace.py:57
+msgid "completion date"
+msgstr ""
+
+#: modules/palace/models/department.py:43 modules/palace/models/palace.py:65
+msgid "website"
+msgstr ""
+
+#: modules/palace/models/department.py:44 modules/palace/models/palace.py:66
+msgid "postal code"
+msgstr ""
+
+#: modules/palace/models/department.py:51
+msgid "Department"
+msgstr "دپارتمان"
+
+#: modules/palace/models/department.py:52
+msgid "Departments"
+msgstr "دپارتمان ها"
+
+#: modules/palace/models/department.py:59 modules/palace/models/language.py:18
+msgid "title"
+msgstr "عنوان"
+
+#: modules/palace/models/department.py:60
+msgid "palace phone"
+msgstr ""
+
+#: modules/palace/models/department.py:61
+msgid "is internal phone"
+msgstr ""
+
+#: modules/palace/models/department.py:65
+#, fuzzy
+#| msgid "Palace"
+msgid "Palace Phone"
+msgstr "کاخ داری"
+
+#: modules/palace/models/department.py:66
+#, fuzzy
+#| msgid "Palace"
+msgid "Palace Phones"
+msgstr "کاخ داری"
+
+#: modules/palace/models/language.py:22
+msgid "language"
+msgstr "زبان"
+
+#: modules/palace/models/language.py:25
+msgid "code"
+msgstr "کد"
+
+#: modules/palace/models/language.py:26
+msgid "is editable"
+msgstr "قابل ویرایش هست"
+
+#: modules/palace/models/language.py:30
+msgid "Language Caption"
+msgstr "ترجمه ها"
+
+#: modules/palace/models/language.py:31
+msgid "Language Captions"
+msgstr "ترجمه"
+
+#: modules/palace/models/organization.py:13
 msgid "Organization"
 msgstr "سازمان"
 
-#: modules/palace/models/organization.py:18
+#: modules/palace/models/organization.py:14
 msgid "Organizations"
 msgstr "سازمانها"
+
+#: modules/palace/models/palace.py:14
+#, fuzzy
+#| msgid "Palace"
+msgid "Palace Kind"
+msgstr "کاخ داری"
+
+#: modules/palace/models/palace.py:15
+#, fuzzy
+#| msgid "Palace"
+msgid "Palace Kinds"
+msgstr "کاخ داری"
+
+#: modules/palace/models/palace.py:26
+msgid "Palace Account Type"
+msgstr ""
+
+#: modules/palace/models/palace.py:27
+msgid "Palace Account Types"
+msgstr ""
+
+#: modules/palace/models/palace.py:37
+msgid "address"
+msgstr "آدرس"
+
+#: modules/palace/models/palace.py:46
+msgid "city"
+msgstr "شهر"
+
+#: modules/palace/models/palace.py:48
+msgid "kind"
+msgstr ""
+
+#: modules/palace/models/palace.py:61
+msgid "operation license"
+msgstr ""
+
+#: modules/palace/models/palace.py:64
+msgid "palace email"
+msgstr ""
+
+#: modules/palace/models/palace.py:75
+#, fuzzy
+#| msgid "Palace"
+msgid "Palaces"
+msgstr "کاخ داری"
+
+#: modules/palace/models/region.py:12
+msgid "Country"
+msgstr "کشور"
+
+#: modules/palace/models/region.py:13
+msgid "Countries"
+msgstr "کشورها"
+
+#: modules/palace/models/region.py:21
+msgid "country"
+msgstr "کشور"
+
+#: modules/palace/models/region.py:25
+msgid "Province"
+msgstr "استان"
+
+#: modules/palace/models/region.py:26
+msgid "Provinces"
+msgstr "استان ها"
+
+#: modules/palace/models/region.py:34
+msgid "province"
+msgstr "استان"
+
+#: modules/palace/models/region.py:38
+msgid "City"
+msgstr "شهر"
+
+#: modules/palace/models/region.py:39
+msgid "Cities"
+msgstr "شهرها"
+
+#~ msgid "Farsi"
+#~ msgstr "فارسی"
+
+#~ msgid "Language"
+#~ msgstr "زبان"
+
+#~ msgid "Languages"
+#~ msgstr "زبان ها"
+
+#~ msgid "email address"
+#~ msgstr "ادرس پست الکترونیکی"
+
+#~ msgid "A user with this email address already exists."
+#~ msgstr "کاریر با این پست اکترونیکی قبلا وجود داشته"
+
+#~ msgid "username"
+#~ msgstr "نام کاربری"
+
+#~ msgid "A user with this username aleady existed."
+#~ msgstr "کاربری با این نام کاربری قبلا ثبت نام کرده"
+
+#~ msgid "organization"
+#~ msgstr "سازمان"
 
 #, fuzzy
 #~| msgid "users"

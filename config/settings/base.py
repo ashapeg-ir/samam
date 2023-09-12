@@ -27,7 +27,7 @@ DEBUG = env.bool("DJANGO_DEBUG", True)
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # though not all of them may be available with every OS.
 # In Windows, this must be set to your system time zone.
-TIME_ZONE = "asia/tehran"
+TIME_ZONE = "Asia/tehran"
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = "fa"
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
@@ -92,7 +92,8 @@ MIGRATION_MODULES = {"sites": "samam.contrib.sites.migrations"}
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
-AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
+AUTHENTICATION_BACKENDS = ['modules.hrm.api.rest.v1.backends.CustomerPhoneLoginOrRegisterBackend',
+                           'django.contrib.auth.backends.ModelBackend']
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "hrm.User"
 
@@ -335,3 +336,12 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
+
+SMS_CODE_EXPIRE_TIME = 100
+
+# redis
+REDIS_PORT = env.int("REDIS_PORT", default=6379)
+REDIS_DBNAME = env.int("REDIS_DBNAME", default=0)
+REDIS_ADDRESS = env.str("REDIS_ADDRESS", default="localhost")
+REDIS_USERNAME = env.str("REDIS_USERNAME", default=None)
+REDIS_PASSWORD = env.str("REDIS_PASSWORD", default=None)
