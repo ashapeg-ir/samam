@@ -1,8 +1,18 @@
 from rest_framework.routers import SimpleRouter
 
-from modules.organization.api.rest.v1.views import PlaceViewSet, OrganizationViewSet
+from modules.organization.api.rest.v1.views import (
+    CityViewSet,
+    PlaceViewSet,
+    CountryViewSet,
+    ProvinceViewSet,
+    OrganizationViewSet,
+)
 
 router = SimpleRouter()
-router.register("", OrganizationViewSet, basename="org")
+
 router.register("place", PlaceViewSet, basename="place")
+router.register("country", CountryViewSet, basename="country")
+router.register("province", ProvinceViewSet, basename="province")
+router.register("city", CityViewSet, basename="city")
+router.register("", OrganizationViewSet, basename="org")
 urlpatterns = router.urls

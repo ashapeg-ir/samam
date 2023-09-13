@@ -21,7 +21,6 @@ class Place(OrganizationModelMixin, PalaceModelMixin):
 
 class Department(PalaceModelMixin, OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin, SoftDeletableModel, MPTTModel):
     place = models.ForeignKey("Place", on_delete=models.CASCADE, verbose_name=_("place"), related_name="%(class)ss")
-    name = models.CharField(max_length=400, verbose_name=_("name"), blank=True)
     description = models.TextField(blank=True, null=True, verbose_name=_("description"))
     is_private = models.BooleanField(default=False, verbose_name=_("is private"))
     parent = TreeForeignKey(

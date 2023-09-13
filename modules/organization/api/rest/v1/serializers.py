@@ -1,8 +1,30 @@
-from rest_framework import serializers
 from django.conf import settings
-from rest_framework import exceptions
-from modules.domain.models import Place, Organization, get_message
+
+from rest_framework import exceptions, serializers
+
+from modules.domain.models import City, Place, Country, Province, Organization, get_message
 from modules.common.messages import samam
+
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = "__all__"
+        read_only = ["id"]
+
+
+class CitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = "__all__"
+        read_only = ["id"]
+
+
+class ProvinceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Province
+        fields = "__all__"
+        read_only = ["id"]
 
 
 class OrganizationSerializer(serializers.ModelSerializer):
@@ -25,3 +47,4 @@ class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
         fields = "__all__"
+        read_only = ["id"]

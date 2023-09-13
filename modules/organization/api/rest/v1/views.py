@@ -1,11 +1,18 @@
-from rest_framework import status, exceptions
+from rest_framework import status
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
-from modules.domain.models import Place, Organization, get_message
-from modules.common.permissions import CustomerPermission
-from modules.organization.api.rest.v1.serializers import PlaceSerializer, OrganizationSerializer
+from rest_framework.viewsets import GenericViewSet
+
+from modules.domain.models import City, Place, Country, Province, Organization, get_message
 from modules.common.messages import samam
+from modules.common.permissions import CustomerPermission
+from modules.organization.api.rest.v1.serializers import (
+    CitySerializer,
+    PlaceSerializer,
+    CountrySerializer,
+    ProvinceSerializer,
+    OrganizationSerializer,
+)
 
 
 class OrganizationViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
@@ -29,9 +36,33 @@ class OrganizationViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retr
         serializer.save(customer=self.request.user)
 
 
-class PlaceViewSet(ModelViewSet):
+class PlaceViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     serializer_class = PlaceSerializer
     permission_classes = [CustomerPermission]
 
     def get_queryset(self):
-        return Place.objects.filter(user=self.request.user)
+        return Place.objects.filter(organization__customer_id=self.request.user)
+
+
+class CountryViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
+    serializer_class = CountrySerializer
+    permission_classes = [CustomerPermission]
+
+    def get_queryset(self):
+        return Country.objects.filter(organization__customer_id=self.request.user)
+
+
+class ProvinceViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
+    serializer_class = ProvinceSerializer
+    permission_classes = [CustomerPermission]
+
+    def get_queryset(self):
+        return Province.objects.filter(organization__customer_id=self.request.user)
+
+
+class CityViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
+    serializer_class = CitySerializer
+    permission_classes = [CustomerPermission]
+
+    def get_queryset(self):
+        return City.objects.filter(organization__customer_id=self.request.user)
