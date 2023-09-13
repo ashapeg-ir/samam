@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from mptt.admin import MPTTModelAdmin
 
-from modules.palace.models import (
+from modules.domain.models import (
     City,
     Place,
     Palace,
@@ -63,4 +63,4 @@ class CityAdmin(admin.ModelAdmin):
 
 @admin.register(LanguageCaption)
 class LanguageCaptionAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["title", "language", "code", "organization", "is_editable"]

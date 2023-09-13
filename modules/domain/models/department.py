@@ -11,7 +11,7 @@ class Place(OrganizationModelMixin, PalaceModelMixin):
     name = models.CharField(max_length=250, verbose_name=_("name"))
 
     class Meta:
-        db_table = "place"
+        db_table = "samam_place"
         verbose_name = _("Place")
         verbose_name_plural = _("Place")
 
@@ -47,7 +47,7 @@ class Department(PalaceModelMixin, OrganizationModelMixin, TimestampedModelMixin
     tree_manager = TreeManager()
 
     class Meta:
-        db_table = "palace_department"
+        db_table = "samam_palace_department"
         verbose_name = _("Department")
         verbose_name_plural = _("Departments")
 
@@ -61,6 +61,6 @@ class DepartmentPhone(OrganizationModelMixin, PalaceModelMixin):
     is_internal = models.BooleanField(default=False, verbose_name=_("is internal phone"))
 
     class Meta:
-        db_table = "palace_phone"
+        db_table = "samam_palace_phone"
         verbose_name = _("Palace Phone")
         verbose_name_plural = _("Palace Phones")

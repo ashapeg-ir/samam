@@ -86,7 +86,7 @@ class UserModelMixin(models.Model):
     """
 
     user = models.ForeignKey(
-        "hrm.User", on_delete=models.CASCADE, related_name="%(class)ss"
+        "domain.User", on_delete=models.CASCADE, related_name="%(class)ss"
     )
 
     class Meta:
@@ -99,7 +99,7 @@ class CustomerModelMixin(models.Model):
     """
 
     customer = models.ForeignKey(
-        "hrm.User", on_delete=models.CASCADE, related_name="%(class)ss", limit_choices_to={"is_customer": True}
+        "domain.User", on_delete=models.CASCADE, related_name="%(class)ss", limit_choices_to={"is_customer": True}
     )
 
     class Meta:
@@ -108,7 +108,7 @@ class CustomerModelMixin(models.Model):
 
 class OrganizationModelMixin(models.Model):
     organization = models.ForeignKey(
-        "palace.Organization", on_delete=models.CASCADE, related_name="%(class)ss"
+        "domain.Organization", on_delete=models.CASCADE, related_name="%(class)ss"
     )
 
     class Meta:
@@ -117,7 +117,7 @@ class OrganizationModelMixin(models.Model):
 
 class PalaceModelMixin(models.Model):
     palace = models.ForeignKey(
-        "palace.Palace", on_delete=models.CASCADE, related_name="%(class)ss"
+        "domain.Palace", on_delete=models.CASCADE, related_name="%(class)ss"
     )
 
     class Meta:

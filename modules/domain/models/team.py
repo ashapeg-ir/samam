@@ -14,7 +14,7 @@ class Team(PalaceModelMixin, OrganizationModelMixin, TimestampedModelMixin, Acti
     name = models.CharField(max_length=300)
 
     class Meta:
-        db_table = "team"
+        db_table = "samam_team"
         verbose_name = _("team")
         verbose_name_plural = _("teams")
 
@@ -23,7 +23,7 @@ class TeamMembers(PalaceModelMixin, OrganizationModelMixin, UserModelMixin):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="%(class)ss")
 
     class Meta:
-        db_table = "team_member"
+        db_table = "samam_team_member"
         verbose_name = _("team member")
         verbose_name_plural = _("team members")
 

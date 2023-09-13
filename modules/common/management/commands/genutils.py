@@ -1,7 +1,5 @@
 from django.core.management.base import BaseCommand
 
-from modules.hrm.models import user
-
 
 class Command(BaseCommand):
     """General Utilities command
@@ -31,7 +29,7 @@ class Command(BaseCommand):
         phone="09358588181",
     ):
         # import user here for isolation
-        from modules.hrm.models import User
+        from modules.domain.models import User
 
         # create the initial superuser for test purposes
         User.objects.create_superuser(

@@ -11,18 +11,16 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     # YOUR PATTERNS
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     # Optional UI:
-    path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path("swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# API URLS
-V1 = [
-    path('auth/', include('modules.hrm.api.rest.v1.urls'))
-]
 urlpatterns += [
     path(settings.ADMIN_URL, admin.site.urls),
-    path("api/v1/", include((V1, "samam"), namespace="v1")),
+    path("api/v1/auth/", include("modules.hrm.api.rest.v1.urls")),
+    path("api/v1/palace/", include("modules.palace.api.rest.v1.urls")),
+    path("api/v1/org/", include("modules.organization.api.rest.v1.urls")),
 ]
 
 if settings.DEBUG:

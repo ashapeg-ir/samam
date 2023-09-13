@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.backends import ModelBackend
-from django.contrib.auth.models import make_password
+
 from rest_framework_simplejwt.exceptions import AuthenticationFailed
 
 from modules.hrm.api.rest.v1.business_logic import AuthBusinessV1

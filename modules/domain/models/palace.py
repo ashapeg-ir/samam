@@ -10,7 +10,7 @@ class PalaceKind(OrganizationModelMixin):
     name = models.CharField(max_length=250, verbose_name=_("name"))
 
     class Meta:
-        db_table = "palace_kind"
+        db_table = "samam_palace_kind"
         verbose_name = _("Palace Kind")
         verbose_name_plural = _("Palace Kinds")
 
@@ -22,7 +22,7 @@ class PalaceAccountType(OrganizationModelMixin):
     name = models.CharField(max_length=250, verbose_name=_("name"))
 
     class Meta:
-        db_table = "palace_account_type"
+        db_table = "samam_palace_account_type"
         verbose_name = _("Palace Account Type")
         verbose_name_plural = _("Palace Account Types")
 
@@ -70,7 +70,7 @@ class Palace(OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin,
     tree_manager = TreeManager()
 
     class Meta:
-        db_table = "palace"
+        db_table = "samam_palace"
         verbose_name = _("Palace")
         verbose_name_plural = _("Palaces")
 

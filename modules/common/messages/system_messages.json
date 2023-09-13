@@ -1,0 +1,42 @@
+[
+  {
+    "language": "fa",
+    "title": "سازمان شما با موفقیت ایجاد شد",
+    "code": 1000
+  },
+  {
+    "language": "en",
+    "title": "your organization created successfully",
+    "code": 1000
+  },
+  {
+    "language": "ar",
+    "title": "تم إنشاء مؤسستك بنجاح",
+    "code": 1000
+  },
+  {
+    "language": "de",
+    "title": "Ihre Organisation wurde erfolgreich erstellt",
+    "code": 1000
+  },
+  {
+    "language": "fa",
+    "title": "شما نمی توانید بیشتر از یک سازمان داشته باشید",
+    "code": 1001
+  },
+  {
+    "language": "en",
+    "title": "You cannot have more than one organization",
+    "code": 1001
+  },
+  {
+    "language": "ar",
+    "title": "لا يمكن أن يكون لديك أكثر من منظمة واحدة",
+    "code": 1001
+  },
+  {
+    "language": "de",
+    "title": "Sie können nicht mehr als eine Organisation haben",
+    "code": 1001
+  }
+]

@@ -3,10 +3,15 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.decorators import action
 
-from modules.hrm.models import User
+from modules.domain.models import User
 from modules.hrm.api.rest.v1.business_logic import AuthBusinessV1
 
-from .serializers import CustomerLoginSerializer, CustomerLoginResponseSerializer, CustomTokenObtainPairSerializer, UserLoginSerializer
+from .serializers import (
+    UserLoginSerializer,
+    CustomerLoginSerializer,
+    CustomerLoginResponseSerializer,
+    CustomTokenObtainPairSerializer,
+)
 
 
 class CustomerLoginViewSet(GenericViewSet):

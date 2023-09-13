@@ -77,8 +77,10 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "modules.admin.apps.AdminConfig",
     "modules.common.apps.CommonAppConfig",
+    "modules.domain.apps.DomainConfig",
     "modules.hrm.apps.HrmAppConfig",
     "modules.palace.apps.PalaceAppConfig",
+    "modules.organization.apps.OrganizationAppConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -95,7 +97,7 @@ MIGRATION_MODULES = {"sites": "samam.contrib.sites.migrations"}
 AUTHENTICATION_BACKENDS = ['modules.hrm.api.rest.v1.backends.CustomerPhoneLoginOrRegisterBackend',
                            'django.contrib.auth.backends.ModelBackend']
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
-AUTH_USER_MODEL = "hrm.User"
+AUTH_USER_MODEL = "domain.User"
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -273,7 +275,7 @@ LOGGING = {
 # https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
-    'DEFAULT_RENDERER_CLASSES': ['rest_framework.renderers.JSONRenderer'],
+    'DEFAULT_RENDERER_CLASSES': ['modules.common.renderer.CustomJSONRenderer'],
     'DEFAULT_PARSER_CLASSES': ['rest_framework.parsers.JSONParser'],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework_simplejwt.authentication.JWTAuthentication"],
@@ -284,10 +286,11 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 25,
 }
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your Project API',
-    'DESCRIPTION': 'Your project description',
+    'TITLE': 'Samam',
+    'SCHEMA_PATH_PREFIX': '/api/v[0-9]',
+    'DESCRIPTION': 'BPMS',
     'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
+    'SERVE_INCLUDE_SCHEMA': True,
     # OTHER SETTINGS
 }
 # CORS CONFIGURATION
@@ -345,3 +348,5 @@ REDIS_DBNAME = env.int("REDIS_DBNAME", default=0)
 REDIS_ADDRESS = env.str("REDIS_ADDRESS", default="localhost")
 REDIS_USERNAME = env.str("REDIS_USERNAME", default=None)
 REDIS_PASSWORD = env.str("REDIS_PASSWORD", default=None)
+
+SAMAM_ORG_LIMIT = 1

@@ -5,11 +5,11 @@ from modules.common.models import CustomerModelMixin
 
 
 class Organization(CustomerModelMixin):
-    name = models.CharField(max_length=300, unique=True)
-    language = models.CharField(max_length=5, unique=True)
+    name = models.CharField(max_length=300, verbose_name=_("name"))
+    language = models.CharField(max_length=5, verbose_name=_("language"))
 
     class Meta:
-        db_table = "palace_organization"
+        db_table = "samam_organization"
         verbose_name = _("Organization")
         verbose_name_plural = _("Organizations")
 
