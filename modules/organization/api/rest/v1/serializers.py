@@ -1,9 +1,6 @@
-from django.conf import settings
+from rest_framework import serializers
 
-from rest_framework import exceptions, serializers
-
-from modules.domain.models import City, Place, Country, Province, Organization, get_message
-from modules.common.messages import samam
+from modules.domain.models import City, Place, Country, Province, Organization
 
 
 class CountrySerializer(serializers.ModelSerializer):
@@ -35,12 +32,6 @@ class OrganizationSerializer(serializers.ModelSerializer):
         model = Organization
         fields = ["name", "language", "id"]
         read_only = ["id"]
-
-    def validate(self, attrs):
-        if Organization.objects.filter(customer_id=self.context["request"].user.id).count() >= settings.SAMAM_ORG_LIMIT:
-            message = get_message(code=samam.ORGANIZATION_CREATION_LIMIT, language=attrs["language"])
-            raise exceptions.ValidationError(detail=message)
-        return attrs
 
 
 class PlaceSerializer(serializers.ModelSerializer):

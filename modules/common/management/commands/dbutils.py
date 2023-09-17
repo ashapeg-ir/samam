@@ -1,4 +1,5 @@
 from django.db import connection
+from django.conf import settings
 from django.core.management.base import BaseCommand
 
 
@@ -20,6 +21,24 @@ class Command(BaseCommand):
             dest="reset-db",
             help="Perform all initialization actions",
         )
+        parser.add_argument(
+            "--insert-messages",
+            action="store_true",
+            dest="insert-messages"
+        )
+
+    def insert_messages(self):
+        import json
+
+        from modules.domain.models import LanguageCaption
+        print("insert system messages...")
+        file_address = f"{settings.APPS_DIR}/common/messages/system_messages.json"
+        json_messages = open(file_address, "r")
+        messages = json.load(json_messages)
+        objs = []
+        for m in messages:
+            objs.append(LanguageCaption(**m))
+        LanguageCaption.objects.bulk_create(objs)
 
     def reset_database_tables(self):
         """Reset database tables
@@ -59,3 +78,5 @@ class Command(BaseCommand):
         # reset the database if the appropriate argument is passed
         if options["reset-db"]:
             self.reset_database_tables()
+        if options["insert-messages"]:
+            self.insert_messages()

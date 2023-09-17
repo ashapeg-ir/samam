@@ -21,7 +21,7 @@ class CustomerPhoneLoginOrRegisterBackend(ModelBackend):
                     phone=phone,
                     is_active=True,
                     is_verified=True,
-                    username=AuthBusinessV1.generate_user_code(phone),
+                    is_customer=True,
                 )
         else:
             raise AuthenticationFailed(

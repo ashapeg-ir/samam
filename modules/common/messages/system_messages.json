@@ -38,5 +38,25 @@
     "language": "de",
     "title": "Sie können nicht mehr als eine Organisation haben",
     "code": 1001
+  },
+  {
+    "language": "fa",
+    "title": "کشور شما  موفقیت ایجاد شد",
+    "code": 1002
+  },
+  {
+    "language": "en",
+    "title": "your country created successfully",
+    "code": 1002
+  },
+  {
+    "language": "ar",
+    "title": "تم إنشاء بلدك بنجاح",
+    "code": 1002
+  },
+  {
+    "language": "de",
+    "title": "Ihr Land wurde erfolgreich erstellt",
+    "code": 1002
   }
 ]

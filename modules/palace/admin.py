@@ -16,11 +16,6 @@ from modules.domain.models import (
 )
 
 
-@admin.register(Place)
-class PlaceAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(PalaceKind)
 class PalaceTypeAdmin(admin.ModelAdmin):
     pass
@@ -39,28 +34,3 @@ class PalacesAdmin(MPTTModelAdmin):
 @admin.register(Department)
 class DepartmentAdmin(MPTTModelAdmin):
     pass
-
-
-@admin.register(Organization)
-class OrganizationAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Country)
-class CountryAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Province)
-class ProvinceAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(City)
-class CityAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(LanguageCaption)
-class LanguageCaptionAdmin(admin.ModelAdmin):
-    list_display = ["title", "language", "code", "organization", "is_editable"]

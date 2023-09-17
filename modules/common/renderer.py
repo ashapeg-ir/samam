@@ -58,4 +58,5 @@ class CustomJSONRenderer(JSONRenderer):
             self.data["info"]["message"] = data["detail"]
             self.data["data"] = OrderedDict()
         else:
-            self.data["info"]["attrs"] = data
+            messages = [i.__str__() for i in data]
+            self.data["info"]["message"] = ",".join(messages)
