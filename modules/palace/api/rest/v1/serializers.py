@@ -20,5 +20,5 @@ class PalaceAccountTypeSerializer(serializers.ModelSerializer):
 class PalaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Palace
-        fields = "__all__"
+        exclude = ["is_active"]
         read_only = ["id"]
