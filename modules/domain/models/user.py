@@ -52,6 +52,7 @@ class User(AbstractUser):
         default=False,
         help_text=_("Designates whether the user is customer or not"),
     )
+    gender = models.ForeignKey("Gender", on_delete=models.CASCADE, related_name="%(class)ss", blank=True, null=True)
     username = None
     USERNAME_FIELD = "phone"
     REQUIRED_FIELDS = ["first_name", "last_name"]

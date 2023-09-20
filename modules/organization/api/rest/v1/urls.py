@@ -6,11 +6,13 @@ from modules.organization.api.rest.v1.views import (
     CountryViewSet,
     ProvinceViewSet,
     OrganizationViewSet,
+    PlaceAccountTypeViewSet,
 )
 
 router = SimpleRouter()
 
 router.register("place", PlaceViewSet, basename="place")
+router.register("place-account-type", PlaceAccountTypeViewSet, basename="place-account-type")
 router.register("country", CountryViewSet, basename="country")
 router.register("province", ProvinceViewSet, basename="province")
 router.register("city", CityViewSet, basename="city")

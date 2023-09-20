@@ -5,7 +5,7 @@ from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelM
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-from modules.domain.models import City, Place, Country, Province, Organization, get_message
+from modules.domain.models import City, Place, Country, Province, Organization, get_message, PlaceAccountType
 from modules.common.messages import samam
 from modules.common.permissions import CustomerPermission
 from modules.organization.api.rest.v1.serializers import (
@@ -14,6 +14,7 @@ from modules.organization.api.rest.v1.serializers import (
     CountrySerializer,
     ProvinceSerializer,
     OrganizationSerializer,
+    PlaceAccountTypeSerializer,
 )
 
 
@@ -87,3 +88,11 @@ class CityViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveMode
 
     def get_queryset(self):
         return City.objects.filter(organization__customer_id=self.request.user)
+
+
+class PlaceAccountTypeViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
+    serializer_class = PlaceAccountTypeSerializer
+    permission_classes = [CustomerPermission]
+
+    def get_queryset(self):
+        return PlaceAccountType.objects.filter(organization__customer_id=self.request.user.id)

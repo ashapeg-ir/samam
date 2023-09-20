@@ -7,13 +7,25 @@ from model_utils.models import SoftDeletableModel
 from modules.common.models import PalaceModelMixin, ActivatedModelMixin, TimestampedModelMixin, OrganizationModelMixin
 
 
-class Place(OrganizationModelMixin, PalaceModelMixin):
-    name = models.CharField(max_length=250, verbose_name=_("name"))
+class DepartmentOwnershipType(OrganizationModelMixin, TimestampedModelMixin, PalaceModelMixin):
+    name = models.CharField(max_length=150, verbose_name=_("name"))
 
     class Meta:
-        db_table = "samam_place"
-        verbose_name = _("Place")
-        verbose_name_plural = _("Place")
+        db_table = "samam_department_ownership_type"
+        verbose_name = _("Department Ownership type")
+        verbose_name_plural = _("Department Ownership Types")
+
+    def __str__(self):
+        return self.name
+
+
+class DepartmentStatus(OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin):
+    name = models.CharField(max_length=150, verbose_name=_("name"))
+
+    class Meta:
+        db_table = "samam_department_status"
+        verbose_name = _("Department Status")
+        verbose_name_plural = _("Department Statuses")
 
     def __str__(self):
         return self.name
@@ -31,17 +43,15 @@ class Department(PalaceModelMixin, OrganizationModelMixin, TimestampedModelMixin
         related_name='children',
         verbose_name=_("parent"),
     )
-
     email = models.EmailField(verbose_name=_("email"))
     land_area = models.IntegerField(verbose_name=_("land area"))
     noble_area = models.IntegerField(verbose_name=_("area of noble"))
     operation_date = models.DateField(verbose_name=_("operation date"))
     completion_date = models.DateField(verbose_name=_("completion date"))
     completion_certificate = models.ImageField(upload_to="palace/completion_certificate")
-
-    website = models.URLField(max_length=300, verbose_name=_("website"), blank=True)
-    postal_code = models.CharField(max_length=15, verbose_name=_("postal code"))
-
+    status = models.ForeignKey(DepartmentStatus, verbose_name=_("department status"), on_delete=models.CASCADE, related_name="%(class)ss")
+    phone = models.CharField(max_length=15, verbose_name=_("department phone"))
+    ownership = models.ForeignKey(DepartmentOwnershipType, verbose_name=_("department ownership type"), on_delete=models.CASCADE, related_name="%(class)ss")
     objects = models.Manager()
     tree_manager = TreeManager()
 
@@ -51,15 +61,4 @@ class Department(PalaceModelMixin, OrganizationModelMixin, TimestampedModelMixin
         verbose_name_plural = _("Departments")
 
     def __str__(self):
-        return self.name
-
-
-class DepartmentPhone(OrganizationModelMixin, PalaceModelMixin):
-    title = models.CharField(max_length=255, verbose_name=_("title"), blank=False)
-    phone_number = models.CharField(max_length=15, verbose_name=_("palace phone"), blank=False)
-    is_internal = models.BooleanField(default=False, verbose_name=_("is internal phone"))
-
-    class Meta:
-        db_table = "samam_palace_phone"
-        verbose_name = _("Palace Phone")
-        verbose_name_plural = _("Palace Phones")
+        return self.place.name
