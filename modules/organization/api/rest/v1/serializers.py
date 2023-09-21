@@ -6,28 +6,43 @@ from modules.domain.models import City, Place, Country, Province, Organization, 
 class PlaceAccountTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlaceAccountType
-        fields = "__all__"
+        fields = [
+            "name",
+            "organization",
+        ]
+        read_only = ["id"]
 
 
 class CountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Country
-        fields = "__all__"
-        read_only = ["id"]
+        fields = [
+            "name",
+            "organization",
+        ]
+        read_only = ["id", "created", "updated"]
 
 
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
-        fields = "__all__"
-        read_only = ["id"]
+        fields = [
+            "name",
+            "province",
+            "organization",
+        ]
+        read_only = ["id", "created", "updated"]
 
 
 class ProvinceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Province
-        fields = "__all__"
-        read_only = ["id"]
+        fields = [
+            "name",
+            "country",
+            "organization",
+        ]
+        read_only = ["id", "created", "updated"]
 
 
 class OrganizationSerializer(serializers.ModelSerializer):
@@ -43,8 +58,18 @@ class OrganizationSerializer(serializers.ModelSerializer):
 class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
-        fields = "__all__"
-        read_only = ["id"]
+        fields = [
+            "organization",
+            "palace",
+            "name",
+            "account_type",
+            "is_workplace",
+            "is_equipment_location",
+            "is_committee",
+            "is_team",
+            "is_management_leadership",
+        ]
+        read_only = ["id", "created", "updated"]
 
     def validate(self, attrs):
         # Count the number of True values in the boolean fields

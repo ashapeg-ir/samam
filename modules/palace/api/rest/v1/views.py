@@ -1,20 +1,47 @@
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-
-from modules.domain.models import Palace, PalaceKind, PalaceAccountType
+from rest_framework.parsers import MultiPartParser, FormParser
+from modules.domain.models import Palace, PalaceKind, PalaceAccountType, PalaceLevel, PalaceOwnershipType, PalaceStatus
 from modules.common.permissions import CustomerPermission
-from modules.palace.api.rest.v1.serializers import PalaceSerializer, PalaceKindSerializer, PalaceAccountTypeSerializer
+from modules.palace.api.rest.v1.serializers import (
+    PalaceSerializer, PalaceKindSerializer, PalaceAccountTypeSerializer, PalaceStatusSerializer, PalaceLevelSerializer, PalaceOwnershipSerializer
+)
+
+
+class PalaceOwnershipTypeViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
+    serializer_class = PalaceOwnershipSerializer
+    permission_classes = [CustomerPermission]
+
+    def get_queryset(self):
+        return PalaceOwnershipType.objects.filter(organization__customer_id=self.request.user.id)
+
+
+class PalaceStatusViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
+    serializer_class = PalaceStatusSerializer
+    permission_classes = [CustomerPermission]
+
+    def get_queryset(self):
+        return PalaceStatus.objects.filter(organization__customer_id=self.request.user.id)
+
+
+class PalaceLevelViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
+    serializer_class = PalaceLevelSerializer
+    permission_classes = [CustomerPermission]
+
+    def get_queryset(self):
+        return PalaceLevel.objects.filter(organization__customer_id=self.request.user.id)
 
 
 class PalaceViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
     serializer_class = PalaceSerializer
     permission_classes = [CustomerPermission]
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_queryset(self):
         return Palace.objects.filter(organization__customer_id=self.request.user.id)
 
 
-class PalaceKindViewSet(ModelViewSet):
+class PalaceKindViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
     serializer_class = PalaceKindSerializer
     permission_classes = [CustomerPermission]
 
@@ -22,7 +49,7 @@ class PalaceKindViewSet(ModelViewSet):
         return PalaceKind.objects.filter(organization__customer_id=self.request.user.id)
 
 
-class PalaceAccountTypeViewSet(ModelViewSet):
+class PalaceAccountTypeViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
     serializer_class = PalaceAccountTypeSerializer
     permission_classes = [CustomerPermission]
 

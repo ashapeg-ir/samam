@@ -4,10 +4,7 @@ from django.urls import include, path
 from django.conf.urls.static import static
 from django.views import defaults as default_views
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+
 
 urlpatterns = [
     # YOUR PATTERNS

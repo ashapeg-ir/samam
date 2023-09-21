@@ -94,12 +94,18 @@ class Palace(OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin,
     distance_to_province = models.IntegerField(blank=True, null=True)
     distance_to_same_palace = models.IntegerField(blank=True, null=True)
     operation_date = models.DateField(verbose_name=_("operation date"))
-    completion_certificate = models.ImageField(upload_to="palace/completion_certificate")
-    completion_date = models.DateField(verbose_name=_("completion date"))
-    ownership_type = models.ForeignKey(PalaceOwnershipType, verbose_name=_("ownership type"), on_delete=models.CASCADE, related_name="%(class)ss")
+    completion_certificate = models.ImageField(upload_to="palace/completion_certificate", blank=True)
+    completion_date = models.DateField(verbose_name=_("completion date"), blank=True)
+    ownership_type = models.ForeignKey(
+        PalaceOwnershipType,
+        verbose_name=_("ownership type"),
+        on_delete=models.CASCADE,
+        related_name="%(class)ss",
+    )
     operation_license = models.ImageField(
         upload_to="palace/operation_license",
         verbose_name=_("operation license"),
+        blank=True,
     )
     status = models.ForeignKey(PalaceStatus, verbose_name=_("palace status"), on_delete=models.CASCADE, related_name="%(class)ss")
     palace_level = models.ForeignKey(PalaceLevel, on_delete=models.CASCADE, related_name="%(class)ss")

@@ -3,17 +3,29 @@ from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
 
 from modules.domain.models import (
-    City,
-    Place,
     Palace,
-    Country,
-    Province,
     Department,
     PalaceKind,
-    Organization,
-    LanguageCaption,
     PalaceAccountType,
+    PalaceStatus,
+    PalaceLevel,
+    PalaceOwnershipType,
 )
+
+
+@admin.register(PalaceOwnershipType)
+class PalaceOwnershipTypeAdmin(admin.ModelAdmin):
+    list_display = ["name", "organization"]
+
+
+@admin.register(PalaceLevel)
+class PalaceLevelAdmin(admin.ModelAdmin):
+    list_display = ["name", "organization"]
+
+
+@admin.register(PalaceStatus)
+class PalaceStatusAdmin(admin.ModelAdmin):
+    list_display = ["name", "organization"]
 
 
 @admin.register(PalaceKind)

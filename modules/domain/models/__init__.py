@@ -1,4 +1,3 @@
-from .team import Team, TeamMembers
 from .user import User
 from .palace import Palace, PalaceKind, PalaceAccountType, PalaceStatus, PalaceLevel, PalaceOwnershipType
 from .region import City, Country, Province
