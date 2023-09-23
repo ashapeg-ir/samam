@@ -1,6 +1,6 @@
-from rest_framework import serializers, exceptions
+from rest_framework import exceptions, serializers
 
-from modules.domain.models import Palace, PalaceKind, PalaceAccountType, PalaceStatus, PalaceLevel, PalaceOwnershipType
+from modules.domain.models import Palace, PalaceKind, PalaceLevel, PalaceStatus, PalaceAccountType, PalaceOwnershipType
 
 
 class PalaceOwnershipSerializer(serializers.ModelSerializer):
@@ -74,6 +74,9 @@ class PalaceAccountTypeSerializer(serializers.ModelSerializer):
 
 
 class PalaceSerializer(serializers.ModelSerializer):
+    banner = serializers.FileField()
+    logo = serializers.FileField()
+
     class Meta:
         model = Palace
         fields = [

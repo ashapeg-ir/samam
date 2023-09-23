@@ -1,4 +1,4 @@
-from rest_framework import serializers, exceptions
+from rest_framework import exceptions, serializers
 
 from modules.domain.models import City, Place, Country, Province, Organization, PlaceAccountType
 
@@ -46,7 +46,7 @@ class ProvinceSerializer(serializers.ModelSerializer):
 
 
 class OrganizationSerializer(serializers.ModelSerializer):
-    language = serializers.CharField(max_length=2, allow_null=False, allow_blank=False)
+    language = serializers.CharField(max_length=2, allow_null=False, allow_blank=False, help_text="en,fa,de,ar,tr")
     name = serializers.CharField(max_length=50, allow_null=False, allow_blank=False)
 
     class Meta:

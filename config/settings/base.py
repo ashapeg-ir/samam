@@ -300,6 +300,8 @@ SPECTACULAR_SETTINGS = {
     'SWAGGER_UI_SETTINGS': {
         'deepLinking': True,
     },
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SORT_OPERATIONS": True,
 }
 # CORS CONFIGURATION
 # ------------------------------------------------------------------------------

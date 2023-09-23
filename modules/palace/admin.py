@@ -6,9 +6,9 @@ from modules.domain.models import (
     Palace,
     Department,
     PalaceKind,
-    PalaceAccountType,
-    PalaceStatus,
     PalaceLevel,
+    PalaceStatus,
+    PalaceAccountType,
     PalaceOwnershipType,
 )
 
@@ -40,7 +40,17 @@ class PalaceAccountTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Palace)
 class PalacesAdmin(MPTTModelAdmin):
-    pass
+    list_display = [
+        "name",
+        "organization",
+        "level",
+        "status",
+        "kind",
+        "ownership_type",
+        "account_type",
+        "is_private",
+        "upstream_organization_code",
+    ]
 
 
 @admin.register(Department)

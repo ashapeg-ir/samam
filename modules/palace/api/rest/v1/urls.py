@@ -3,10 +3,10 @@ from rest_framework.routers import SimpleRouter
 from modules.palace.api.rest.v1.views import (
     PalaceViewSet,
     PalaceKindViewSet,
-    PalaceAccountTypeViewSet,
     PalaceLevelViewSet,
-    PalaceOwnershipTypeViewSet,
     PalaceStatusViewSet,
+    PalaceAccountTypeViewSet,
+    PalaceOwnershipTypeViewSet,
 )
 
 router = SimpleRouter()

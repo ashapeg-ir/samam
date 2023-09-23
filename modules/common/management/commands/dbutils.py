@@ -60,5 +60,3 @@ class Command(BaseCommand):
         # reset the database if the appropriate argument is passed
         if options["reset-db"]:
             self.reset_database_tables()
-        if options["insert-messages"]:
-            self.insert_messages()

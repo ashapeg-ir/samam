@@ -74,3 +74,5 @@ class TeamDistribution(OrganizationModelMixin, PalaceModelMixin):
 
     class Meta:
         db_table = "samam_palace_team_distribution"
+        verbose_name = _("Team Distribution")
+        verbose_name_plural = _("Team Distributions")

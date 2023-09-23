@@ -24,3 +24,10 @@ class DepartmentSerializer(serializers.ModelSerializer):
             "organization",
         ]
         read_only_fields = ["id"]
+
+    def validate(self, attrs):
+        place = attrs.get("place")
+        is_private = attrs.get("is_private")
+        if not place.is_team and is_private:
+            raise serializers.ValidationError("This place is not a team you cant set the department private.")
+        return attrs

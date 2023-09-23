@@ -1,10 +1,16 @@
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from rest_framework.parsers import MultiPartParser, FormParser
-from modules.domain.models import Palace, PalaceKind, PalaceAccountType, PalaceLevel, PalaceOwnershipType, PalaceStatus
+
+from modules.domain.models import Palace, PalaceKind, PalaceLevel, PalaceStatus, PalaceAccountType, PalaceOwnershipType
 from modules.common.permissions import CustomerPermission
 from modules.palace.api.rest.v1.serializers import (
-    PalaceSerializer, PalaceKindSerializer, PalaceAccountTypeSerializer, PalaceStatusSerializer, PalaceLevelSerializer, PalaceOwnershipSerializer
+    PalaceSerializer,
+    PalaceKindSerializer,
+    PalaceLevelSerializer,
+    PalaceStatusSerializer,
+    PalaceOwnershipSerializer,
+    PalaceAccountTypeSerializer,
 )
 
 
@@ -39,6 +45,9 @@ class PalaceViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListMo
 
     def get_queryset(self):
         return Palace.objects.filter(organization__customer_id=self.request.user.id)
+
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
 
 
 class PalaceKindViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):

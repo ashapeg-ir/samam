@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from modules.common.models import CustomerModelMixin, OrganizationModelMixin, TimestampedModelMixin, PalaceModelMixin
+from modules.common.models import PalaceModelMixin, CustomerModelMixin, TimestampedModelMixin, OrganizationModelMixin
 
 
 class PlaceAccountType(OrganizationModelMixin, TimestampedModelMixin):

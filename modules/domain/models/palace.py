@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 from mptt.models import MPTTModel, TreeManager, TreeForeignKey
 
-from modules.common.models import ActivatedModelMixin, TimestampedModelMixin, OrganizationModelMixin, PalaceModelMixin
+from modules.common.models import PalaceModelMixin, ActivatedModelMixin, TimestampedModelMixin, OrganizationModelMixin
 
 
 class PalaceStatus(OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin):
@@ -139,3 +139,6 @@ class PalaceStatusHistory(OrganizationModelMixin, PalaceModelMixin):
     )
     start = models.DateTimeField(verbose_name=_("start at"), auto_now_add=True)
     end = models.DateTimeField(verbose_name=_("end at"), auto_now_add=False)
+
+    class Meta:
+        db_table = "samam_palace_status_history"

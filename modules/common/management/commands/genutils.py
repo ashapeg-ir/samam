@@ -1,9 +1,29 @@
+import random
+import datetime
+from random import randint
+
+from django.conf import settings
 from django.core.management.base import BaseCommand
+
 from faker import Faker
 from faker.providers import company
-from random import randint
-from django.conf import settings
-from modules.domain.models import User, Organization, PlaceAccountType, Place, Gender
+
+from modules.domain.models import (
+    City,
+    User,
+    Place,
+    Gender,
+    Palace,
+    Country,
+    Province,
+    PalaceKind,
+    PalaceLevel,
+    Organization,
+    PalaceStatus,
+    PlaceAccountType,
+    PalaceAccountType,
+    PalaceOwnershipType,
+)
 
 
 class Command(BaseCommand):
@@ -65,8 +85,31 @@ class Command(BaseCommand):
         Gender.objects.create(name="مرد")
         Gender.objects.create(name="زن")
         faker = Faker("fa_IR")
-        for i in range(5):
-            User.objects.create(
+        faker.add_provider(company)
+        kind1 = {
+            "is_workplace": True,
+            "is_equipment_location": False,
+            "is_committee": False,
+            "is_team": False,
+            "is_management_leadership": False,
+        }
+        kind2 = {
+            "is_workplace": False,
+            "is_equipment_location": True,
+            "is_committee": False,
+            "is_team": False,
+            "is_management_leadership": False,
+        }
+        kind3 = {
+            "is_workplace": False,
+            "is_equipment_location": False,
+            "is_committee": True,
+            "is_team": False,
+            "is_management_leadership": False,
+        }
+        choices = [kind1, kind2, kind3]
+        for i in range(20):
+            user = User.objects.create(
                 phone=f"09{randint(100000000, 999999999)}",
                 first_name=faker.first_name(),
                 last_name=faker.last_name(),
@@ -76,24 +119,77 @@ class Command(BaseCommand):
                 is_verified=True,
                 is_customer=True,
             )
-
-    def add_org(self):
-        print("add organization...")
-        faker = Faker("fa_IR")
-        faker.add_provider(company)
-        for user in User.objects.all():
-            Organization.objects.create(
+            org = Organization.objects.create(
                 customer=user,
                 name=faker.company(),
                 language="fa",
             )
-
-    def add_place_type(self):
-        faker = Faker("fa_IR")
-        for org in Organization.objects.all():
+            PalaceAccountType.objects.create(
+                organization=org,
+                name=faker.company(),
+            )
+            Country.objects.create(
+                organization=org,
+                name="ایران"
+            )
+            Province.objects.create(
+                organization=org,
+                country_id=1,
+                name=faker.administrative_unit()
+            )
+            City.objects.create(
+                organization=org,
+                name=faker.city(),
+                province_id=1,
+            )
+            PalaceLevel.objects.create(
+                organization=org,
+                name=faker.company(),
+            )
+            PalaceStatus.objects.create(
+                organization=org,
+                name=faker.company(),
+            )
+            PalaceKind.objects.create(
+                organization=org,
+                name=faker.company(),
+            )
+            PalaceOwnershipType.objects.create(
+                organization=org,
+                name=faker.company(),
+            )
+            Palace.objects.create(
+                organization=org,
+                name=faker.company(),
+                status_id=1,
+                kind_id=1,
+                ownership_type_id=1,
+                address=faker.address()[:7],
+                city_id=1,
+                account_type_id=1,
+                land_area=random.randint(0, 1000),
+                noble_area=random.randint(0, 1000),
+                distance_to_province=random.randint(0, 1000),
+                distance_to_same_palace=random.randint(0, 1000),
+                operation_date=datetime.date(2000, 1, 1),
+                completion_date=datetime.date(2000, 1, 1),
+                palace_level_id=1,
+                phone=f"09{randint(100000000, 999999999)}",
+                email=faker.email(),
+                # operation_license=faker.image_url(),
+                postal_code=random.randint(0, 1000),
+                description=faker.address()[:6],
+            )
             PlaceAccountType.objects.create(
                 organization=org,
-                name=faker.name(),
+                name=faker.company()[:5],
+            )
+            Place.objects.create(
+                palace_id=1,
+                organization=org,
+                name=faker.company()[:5],
+                account_type_id=1,
+                **random.choices(choices)[0],
             )
 
     def handle(self, *args, **options):
@@ -111,8 +207,6 @@ class Command(BaseCommand):
             self.create_superuser()
         if options["default-data"]:
                 print("insert default data...")
-                # self.create_superuser()
+                self.create_superuser()
                 self.insert_messages()
                 self.add_user()
-                self.add_org()
-                self.add_place_type()
