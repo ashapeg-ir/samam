@@ -1,6 +1,6 @@
 from rest_framework.routers import SimpleRouter
 
-from modules.palace.api.rest.v1.views import (
+from modules.organization.api.rest.v1.palace.views import (
     PalaceViewSet,
     PalaceKindViewSet,
     PalaceLevelViewSet,

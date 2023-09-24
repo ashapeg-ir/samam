@@ -4,7 +4,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from modules.domain.models import Palace, PalaceKind, PalaceLevel, PalaceStatus, PalaceAccountType, PalaceOwnershipType
 from modules.common.permissions import CustomerPermission
-from modules.palace.api.rest.v1.serializers import (
+from modules.organization.api.rest.v1.palace.serializers import (
     PalaceSerializer,
     PalaceKindSerializer,
     PalaceLevelSerializer,

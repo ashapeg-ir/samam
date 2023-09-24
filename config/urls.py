@@ -16,9 +16,7 @@ urlpatterns = [
 urlpatterns += [
     path(settings.ADMIN_URL, admin.site.urls),
     path("api/v1/auth/", include("modules.hrm.api.rest.v1.urls")),
-    path("api/v1/palace/", include("modules.palace.api.rest.v1.urls")),
     path("api/v1/org/", include("modules.organization.api.rest.v1.urls")),
-    path("api/v1/department/", include("modules.department.api.rest.v1.urls")),
 ]
 
 if settings.DEBUG:

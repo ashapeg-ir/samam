@@ -79,9 +79,7 @@ LOCAL_APPS = [
     "modules.common.apps.CommonAppConfig",
     "modules.domain.apps.DomainConfig",
     "modules.hrm.apps.HrmAppConfig",
-    "modules.palace.apps.PalaceAppConfig",
     "modules.organization.apps.OrganizationAppConfig",
-    "modules.department.apps.DepartmentAppConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

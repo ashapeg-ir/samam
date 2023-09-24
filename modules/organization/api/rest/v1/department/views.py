@@ -4,7 +4,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from modules.domain.models import Department, TeamDistribution
 from modules.common.permissions import CustomerPermission
-from modules.department.api.rest.v1.serializers import DepartmentSerializer, TeamDistributionSerializer
+from modules.organization.api.rest.v1.department.serializers import DepartmentSerializer, TeamDistributionSerializer
 
 
 class DepartmentViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
