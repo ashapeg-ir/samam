@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from modules.domain.models import Department
+from modules.domain.models import Department, TeamDistribution
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -31,3 +31,15 @@ class DepartmentSerializer(serializers.ModelSerializer):
         if not place.is_team and is_private:
             raise serializers.ValidationError("This place is not a team you cant set the department private.")
         return attrs
+
+
+class TeamDistributionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeamDistribution
+        fields = [
+            "department",
+            "organization",
+            "palace",
+            "is_active",
+        ]
+        read_only_fields = ["id", "created", "updated"]

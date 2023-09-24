@@ -64,7 +64,7 @@ class Department(PalaceModelMixin, OrganizationModelMixin, TimestampedModelMixin
         return self.place.name
 
 
-class TeamDistribution(OrganizationModelMixin, PalaceModelMixin):
+class TeamDistribution(OrganizationModelMixin, PalaceModelMixin, TimestampedModelMixin, ActivatedModelMixin):
     department = models.ForeignKey(
         Department,
         verbose_name=_("department"),
