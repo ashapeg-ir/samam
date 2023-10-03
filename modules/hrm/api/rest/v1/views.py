@@ -29,9 +29,9 @@ class CustomerLoginViewSet(GenericViewSet):
     def login(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        code = self.business.send_sms(serializer.validated_data["phone"])
+        code = self.business.send_sms(serializer.validated_data["username"])
         response = CustomerLoginResponseSerializer({
-            'phone': serializer.validated_data['phone'],
+            'username': serializer.validated_data['username'],
             'message': "message send successfully",
             "code": code,
         })

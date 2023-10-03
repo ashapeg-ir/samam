@@ -93,8 +93,10 @@ MIGRATION_MODULES = {"sites": "samam.contrib.sites.migrations"}
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
-AUTHENTICATION_BACKENDS = ['modules.hrm.api.rest.v1.backends.CustomerPhoneLoginOrRegisterBackend',
-                           'django.contrib.auth.backends.ModelBackend']
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'modules.hrm.api.rest.v1.backends.CustomerPhoneLoginOrRegisterBackend',
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "domain.User"
 

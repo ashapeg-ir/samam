@@ -11,16 +11,15 @@ User = get_user_model()
 
 class CustomerPhoneLoginOrRegisterBackend(ModelBackend):
 
-    def authenticate(self, request, phone, password, **kwargs):
-        phone = phone
-        if AuthBusinessV1.verify_sms_code(phone=phone, code=password):
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        username = username
+        if AuthBusinessV1.verify_sms_code(username=username, code=password):
             try:
-                user = User.objects.get(phone=phone)
+                user = User.objects.get(username=username, is_customer=True)
             except User.DoesNotExist:
                 user = User.objects.create(
-                    phone=phone,
+                    username=username,
                     is_active=True,
-                    is_verified=True,
                     is_customer=True,
                 )
         else:
@@ -28,16 +27,16 @@ class CustomerPhoneLoginOrRegisterBackend(ModelBackend):
                 _('Your OTP Password has been expired or is wrong')
             )
             return None
-        if user.is_active and user.is_verified:
+        if user.is_active:
             return user
         return None
 
 
 # TODO: select user from appropriate organization and department who is active and has a job
-def user_authenticate(request, phone, password, **kwargs):
+def user_authenticate(request, username, password, **kwargs):
 
     try:
-        user = User.objects.get(phone=phone, is_active=True, is_verified=True, is_customer=False)
+        user = User.objects.get(username=username, is_active=True, is_verified=True, is_customer=False)
     except User.DoesNotExist:
         raise AuthenticationFailed(
             _("dear user you are not active or you are not part of the system please contact the administrator.")

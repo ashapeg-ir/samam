@@ -91,7 +91,6 @@ class PalaceSerializer(serializers.ModelSerializer):
             "account_type",
             "kind",
             "is_private",
-            "upstream_organization_code",
             "land_area",
             "noble_area",
             "distance_to_province",

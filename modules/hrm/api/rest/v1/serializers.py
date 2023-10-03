@@ -9,19 +9,25 @@ from .backends import user_authenticate
 
 
 class CustomerLoginSerializer(serializers.Serializer):
-    phone = serializers.CharField(required=True)
+    username = serializers.CharField(
+        required=True,
+        allow_null=False,
+        allow_blank=False,
+        max_length=15,
+        help_text="phone number",
+    )
 
     class Meta:
-        fields = ["phone"]
+        fields = ["username"]
 
 
 class CustomerLoginResponseSerializer(serializers.Serializer):
-    phone = serializers.CharField(required=True)
+    username = serializers.CharField(required=True, allow_null=False, allow_blank=False, max_length=15, min_length=15)
     message = serializers.CharField()
     code = serializers.IntegerField()
 
     class Meta:
-        fields = ["phone", "message", "code"]
+        fields = ["username", "message", "code"]
 
 
 class CustomTokenObtainPairSerializer(TokenObtainSerializer):
@@ -35,7 +41,7 @@ class CustomTokenObtainPairSerializer(TokenObtainSerializer):
         data["refresh"] = str(refresh)
         data["access"] = str(refresh.access_token)
         data["id"] = self.user.pk
-        data["phone"] = self.user.phone
+        data["username"] = self.user.username
         data["first_name"] = self.user.first_name
         data["last_name"] = self.user.last_name
         data["is_active"] = self.user.is_verified
@@ -71,7 +77,7 @@ class UserLoginSerializer(TokenObtainSerializer):
             "refresh": str(refresh),
             "access": str(refresh.access_token),
             "id": self.user.pk,
-            "phone": self.user.phone,
+            "username": self.user.username,
             "first_name": self.user.first_name,
             "last_name": self.user.last_name,
             "is_active": self.user.is_verified,

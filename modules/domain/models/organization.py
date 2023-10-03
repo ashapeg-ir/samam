@@ -19,11 +19,11 @@ class PlaceAccountType(OrganizationModelMixin, TimestampedModelMixin):
 class Place(OrganizationModelMixin, TimestampedModelMixin, PalaceModelMixin):
     name = models.CharField(max_length=250, verbose_name=_("name"))
     account_type = models.ForeignKey(PlaceAccountType, verbose_name=_("place account type"), on_delete=models.CASCADE, related_name="%(class)ss")
-    is_workplace = models.BooleanField(default=False)
-    is_equipment_location = models.BooleanField(default=False)
-    is_committee = models.BooleanField(default=False)
-    is_team = models.BooleanField(default=False)
-    is_management_leadership = models.BooleanField(default=False)
+    is_workplace = models.BooleanField(default=False, db_index=True)
+    is_equipment_location = models.BooleanField(default=False, db_index=True)
+    is_committee = models.BooleanField(default=False, db_index=True)
+    is_team = models.BooleanField(default=False, db_index=True)
+    is_management_leadership = models.BooleanField(default=False, db_index=True)
 
     class Meta:
         db_table = "samam_place"

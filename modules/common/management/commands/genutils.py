@@ -57,14 +57,14 @@ class Command(BaseCommand):
         password: str = "test123",
         first_name: str = "omid",
         last_name: str = "zarinmahd",
-        phone="09358588181",
+        username="09358588181",
     ):
         # import user here for isolation
         from modules.domain.models import User
 
         # create the initial superuser for test purposes
         User.objects.create_superuser(
-            email=email, password=password, first_name=first_name, last_name=last_name, phone=phone
+            email=email, password=password, first_name=first_name, last_name=last_name, username=username
         )
 
     def insert_messages(self):
@@ -82,8 +82,6 @@ class Command(BaseCommand):
 
     def add_user(self):
         print("adding user...")
-        Gender.objects.create(name="مرد")
-        Gender.objects.create(name="زن")
         faker = Faker("fa_IR")
         faker.add_provider(company)
         kind1 = {
@@ -110,11 +108,11 @@ class Command(BaseCommand):
         choices = [kind1, kind2, kind3]
         for i in range(20):
             user = User.objects.create(
-                phone=f"09{randint(100000000, 999999999)}",
+                username=f"09{randint(100000000, 999999999)}",
                 first_name=faker.first_name(),
                 last_name=faker.last_name(),
                 email=faker.email(),
-                gender=Gender.objects.get(id=1),
+                # gender=Gender.objects.get(id=1),
                 is_active=True,
                 is_verified=True,
                 is_customer=True,
@@ -124,6 +122,8 @@ class Command(BaseCommand):
                 name=faker.company(),
                 language="fa",
             )
+            Gender.objects.create(name="مرد", organization=org)
+            Gender.objects.create(name="زن", organization=org)
             PalaceAccountType.objects.create(
                 organization=org,
                 name=faker.company(),
@@ -158,7 +158,7 @@ class Command(BaseCommand):
                 organization=org,
                 name=faker.company(),
             )
-            Palace.objects.create(
+            palace = Palace.objects.create(
                 organization=org,
                 name=faker.company(),
                 status_id=1,
@@ -185,7 +185,7 @@ class Command(BaseCommand):
                 name=faker.company()[:5],
             )
             Place.objects.create(
-                palace_id=1,
+                palace=palace,
                 organization=org,
                 name=faker.company()[:5],
                 account_type_id=1,

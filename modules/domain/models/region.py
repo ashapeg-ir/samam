@@ -40,3 +40,16 @@ class City(TimestampedModelMixin, OrganizationModelMixin):
 
     def __str__(self):
         return self.name
+
+
+class ResidentialArea(TimestampedModelMixin, OrganizationModelMixin):
+    name = models.CharField(max_length=255, verbose_name=_("name"))
+    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name=_("city"))
+
+    class Meta:
+        db_table = "samam_residential_area"
+        verbose_name = _("Residential Area")
+        verbose_name_plural = _("Residential Areas")
+
+    def __str__(self):
+        return self.name

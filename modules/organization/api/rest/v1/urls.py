@@ -1,5 +1,7 @@
-from rest_framework.routers import SimpleRouter
 from django.urls import path, include
+
+from rest_framework.routers import SimpleRouter
+
 from modules.organization.api.rest.v1.views import (
     CityViewSet,
     PlaceViewSet,

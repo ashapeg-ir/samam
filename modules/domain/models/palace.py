@@ -88,7 +88,6 @@ class Palace(OrganizationModelMixin, TimestampedModelMixin, ActivatedModelMixin,
     account_type = models.ForeignKey(PalaceAccountType, on_delete=models.CASCADE, related_name="%(class)ss")
     kind = models.ForeignKey(PalaceKind, on_delete=models.CASCADE, verbose_name=_("kind"), related_name="%(class)ss")
     is_private = models.BooleanField(default=True, verbose_name=_("is private"))
-    upstream_organization_code = models.IntegerField(blank=True, null=True)
     land_area = models.IntegerField(verbose_name=_("land area"), null=True)
     noble_area = models.IntegerField(verbose_name=_("area of noble"), null=True)
     distance_to_province = models.IntegerField(blank=True, null=True)
