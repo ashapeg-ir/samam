@@ -35,11 +35,14 @@ class OrganizationViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retr
             raise exceptions.ValidationError(detail=message)
 
         self.perform_create(serializer)
+        user = self.request.user
+        user.organization_id = serializer.data["id"]
+        user.save()
         headers = self.get_success_headers(serializer.data)
         language = serializer.validated_data["language"]
         data = {
             "message": get_message(code=samam.ORGANIZATION_CREATED, language=language),
-            "data": serializer.validated_data,
+            **serializer.data
         }
         return Response(data=data, headers=headers, status=status.HTTP_201_CREATED)
 

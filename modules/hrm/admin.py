@@ -56,7 +56,7 @@ class CustomUserAdmin(UserAdmin):
         )
     ]
     readonly_fields = ["id", "last_login", "date_joined"]
-    list_display = ["full_name", "email", "date_joined"]
+    list_display = ["username", "full_name", "email", "date_joined"]
     list_filter = ["is_staff", "is_superuser", "is_active", "date_joined", "groups"]
     search_fields = ["id", "first_name", "last_name", "email"]
     ordering = ["-date_joined"]
