@@ -1,8 +1,17 @@
+from rest_framework import exceptions
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.viewsets import GenericViewSet
 
-from modules.domain.models import Palace, PalaceKind, PalaceLevel, PalaceStatus, PalaceAccountType, PalaceOwnershipType
+from modules.domain.models import (
+    Palace,
+    PalaceKind,
+    PalaceLevel,
+    Organization,
+    PalaceStatus,
+    PalaceAccountType,
+    PalaceOwnershipType,
+)
 from modules.common.permissions import CustomerPermission
 from modules.organization.api.rest.v1.palace.serializers import (
     PalaceSerializer,
@@ -22,6 +31,11 @@ class PalaceOwnershipTypeViewSet(GenericViewSet, CreateModelMixin, RetrieveModel
     def get_queryset(self):
         return PalaceOwnershipType.objects.filter(organization__customer_id=self.request.user.id)
 
+    def perform_create(self, serializer):
+        if Organization.objects.get(customer_id=self.request.user) != serializer.validated_data["organization"]:
+            raise exceptions.PermissionDenied
+        super().perform_create(serializer)
+
 
 class PalaceStatusViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
     queryset = PalaceStatus.objects.none()
@@ -31,6 +45,11 @@ class PalaceStatusViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, 
     def get_queryset(self):
         return PalaceStatus.objects.filter(organization__customer_id=self.request.user.id)
 
+    def perform_create(self, serializer):
+        if Organization.objects.get(customer_id=self.request.user) != serializer.validated_data["organization"]:
+            raise exceptions.PermissionDenied
+        super().perform_create(serializer)
+
 
 class PalaceLevelViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
     queryset = PalaceLevel.objects.none()
@@ -39,6 +58,11 @@ class PalaceLevelViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, L
 
     def get_queryset(self):
         return PalaceLevel.objects.filter(organization__customer_id=self.request.user.id)
+
+    def perform_create(self, serializer):
+        if Organization.objects.get(customer_id=self.request.user) != serializer.validated_data["organization"]:
+            raise exceptions.PermissionDenied
+        super().perform_create(serializer)
 
 
 class PalaceViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
@@ -50,8 +74,10 @@ class PalaceViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListMo
     def get_queryset(self):
         return Palace.objects.filter(organization__customer_id=self.request.user.id)
 
-    def create(self, request, *args, **kwargs):
-        return super().create(request, *args, **kwargs)
+    def perform_create(self, serializer):
+        if Organization.objects.get(customer_id=self.request.user) != serializer.validated_data["organization"]:
+            raise exceptions.PermissionDenied
+        super().perform_create(serializer)
 
 
 class PalaceKindViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
@@ -62,6 +88,11 @@ class PalaceKindViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, Li
     def get_queryset(self):
         return PalaceKind.objects.filter(organization__customer_id=self.request.user.id)
 
+    def perform_create(self, serializer):
+        if Organization.objects.get(customer_id=self.request.user) != serializer.validated_data["organization"]:
+            raise exceptions.PermissionDenied
+        super().perform_create(serializer)
+
 
 class PalaceAccountTypeViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
     queryset = PalaceAccountType.objects.none()
@@ -70,3 +101,8 @@ class PalaceAccountTypeViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMi
 
     def get_queryset(self):
         return PalaceAccountType.objects.filter(organization__customer_id=self.request.user.id)
+
+    def perform_create(self, serializer):
+        if Organization.objects.get(customer_id=self.request.user) != serializer.validated_data["organization"]:
+            raise exceptions.PermissionDenied
+        super().perform_create(serializer)

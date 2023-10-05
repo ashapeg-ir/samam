@@ -22,5 +22,6 @@ router.register("", OrganizationViewSet, basename="org")
 urlpatterns = [
     path("palace/", include("modules.organization.api.rest.v1.palace.urls")),
     path("department/", include("modules.organization.api.rest.v1.department.urls")),
+    path("career/", include("modules.organization.api.rest.v1.career.urls")),
 ]
 urlpatterns += router.urls

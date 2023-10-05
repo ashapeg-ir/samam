@@ -133,6 +133,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    # "modules.common.middlewares.SamamMiddleware",
     # "django.middleware.common.BrokenLinkEmailsMiddleware",
     # "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -280,8 +281,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': ['rest_framework.parsers.JSONParser'],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
@@ -351,12 +352,13 @@ SIMPLE_JWT = {
 }
 
 SMS_CODE_EXPIRE_TIME = 100
-
-# redis
-REDIS_PORT = env.int("REDIS_PORT", default=6379)
-REDIS_DBNAME = env.int("REDIS_DBNAME", default=0)
-REDIS_ADDRESS = env.str("REDIS_ADDRESS", default="localhost")
-REDIS_USERNAME = env.str("REDIS_USERNAME", default=None)
-REDIS_PASSWORD = env.str("REDIS_PASSWORD", default=None)
-
 SAMAM_ORG_LIMIT = 1
+SAMAM_ORG_CACHE_KEY = "samam_org:{}"
+# CACHES
+# ------------------------------------------------------------------------------
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": env.str("CACHE_REDIS_URL"),
+    }
+}

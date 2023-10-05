@@ -224,8 +224,8 @@ class OrganizationGraph(OrganizationModelMixin, TimestampedModelMixin):  # سا�
     row_full_name = models.CharField(max_length=150, verbose_name=_("row full name"))  # عنوان ردیف سازمانی در سیستم مکاتبات
     number = models.IntegerField(verbose_name=_("number"))
 
-    # کد ردیف سازمانی صادره کننده ابلاغ
-    # کد سند شرح وظیفه
+    communicator = models.ForeignKey("User", on_delete=models.CASCADE, related_name="%(class)ss") # کد ردیف سازمانی صادره کننده ابلاغ
+    # TODO: کد سند شرح وظیفه پیاده سازی شود
 
     class Meta:
         db_table = "samam_organization_graph"

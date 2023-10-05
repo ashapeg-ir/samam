@@ -39,7 +39,7 @@ class OrganizationViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retr
         language = serializer.validated_data["language"]
         data = {
             "message": get_message(code=samam.ORGANIZATION_CREATED, language=language),
-            "data": serializer.validated_data,
+            **serializer.validated_data,
         }
         return Response(data=data, headers=headers, status=status.HTTP_201_CREATED)
 
@@ -65,6 +65,11 @@ class PlaceViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveMod
             "message": get_message(code=samam.ORGANIZATION_CREATED, language=language),
         }
         return Response(data=data, headers=headers, status=status.HTTP_201_CREATED)
+
+    def perform_create(self, serializer):
+        if Organization.objects.get(customer_id=self.request.user) != serializer.validated_data["organization"]:
+            raise exceptions.PermissionDenied
+        super().perform_create(serializer)
 
 
 class CountryViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
