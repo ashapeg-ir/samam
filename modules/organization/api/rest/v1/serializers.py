@@ -4,50 +4,100 @@ from modules.domain.models import City, Place, Country, Province, Organization, 
 
 
 class PlaceAccountTypeSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(max_length=150, allow_null=False, allow_blank=False, required=True)
+    organization = serializers.PrimaryKeyRelatedField(
+        allow_null=False,
+        required=True,
+        queryset=Organization.objects.all(),
+    )
+    created = serializers.DateField(read_only=True)
+    updated = serializers.DateField(read_only=True)
+
     class Meta:
         model = PlaceAccountType
         fields = [
             "name",
             "organization",
+            "created",
+            "updated",
         ]
-        read_only = ["id"]
 
 
 class CountrySerializer(serializers.ModelSerializer):
+    name = serializers.CharField(max_length=150, allow_null=False, allow_blank=False, required=True)
+    organization = serializers.PrimaryKeyRelatedField(
+        allow_null=False,
+        required=True,
+        queryset=Organization.objects.all(),
+    )
+    created = serializers.DateField(read_only=True)
+    updated = serializers.DateField(read_only=True)
+
     class Meta:
         model = Country
         fields = [
             "name",
             "organization",
+            "created",
+            "updated",
         ]
-        read_only = ["id", "created", "updated"]
 
 
 class CitySerializer(serializers.ModelSerializer):
+    name = serializers.CharField(max_length=150, allow_null=False, allow_blank=False, required=True)
+    province = serializers.PrimaryKeyRelatedField(
+        allow_null=False,
+        required=True,
+        queryset=Province.objects.all(),
+    )
+    organization = serializers.PrimaryKeyRelatedField(
+        allow_null=False,
+        required=True,
+        queryset=Organization.objects.all(),
+    )
+    created = serializers.DateField(read_only=True)
+    updated = serializers.DateField(read_only=True)
+
     class Meta:
         model = City
         fields = [
             "name",
             "province",
             "organization",
+            "created",
+            "updated",
         ]
-        read_only = ["id", "created", "updated"]
 
 
 class ProvinceSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(max_length=150, allow_null=False, allow_blank=False, required=True)
+    country = serializers.PrimaryKeyRelatedField(
+        allow_null=False,
+        required=True,
+        queryset=Country.objects.all(),
+    )
+    organization = serializers.PrimaryKeyRelatedField(
+        allow_null=False,
+        required=True,
+        queryset=Organization.objects.all(),
+    )
+    created = serializers.DateField(read_only=True)
+    updated = serializers.DateField(read_only=True)
+
     class Meta:
         model = Province
         fields = [
             "name",
             "country",
             "organization",
+            "created",
+            "updated",
         ]
-        read_only = ["id", "created", "updated"]
 
 
 class OrganizationSerializer(serializers.ModelSerializer):
-    language = serializers.CharField(max_length=2, allow_null=False, allow_blank=False, help_text="en,fa,de,ar,tr")
-    name = serializers.CharField(max_length=50, allow_null=False, allow_blank=False)
+    language = serializers.CharField(max_length=2, allow_null=False, allow_blank=False, help_text="fa")
+    name = serializers.CharField(max_length=50, allow_null=False, allow_blank=False, required=True)
 
     class Meta:
         model = Organization
@@ -56,6 +106,28 @@ class OrganizationSerializer(serializers.ModelSerializer):
 
 
 class PlaceSerializer(serializers.ModelSerializer):
+    organization = serializers.PrimaryKeyRelatedField(
+        allow_null=False,
+        required=True,
+        queryset=Organization.objects.all(),
+    )
+    palace = serializers.PrimaryKeyRelatedField(
+        allow_null=False,
+        required=True,
+        queryset=Place.objects.all(),
+    )
+    name = serializers.CharField(max_length=250, allow_null=False, allow_blank=False, required=True)
+    account_type = serializers.PrimaryKeyRelatedField(
+        allow_null=False,
+        required=True,
+        queryset=PlaceAccountType.objects.all(),
+    )
+    is_workplace = serializers.BooleanField(default=False)
+    is_equipment_location = serializers.BooleanField(default=False)
+    is_committee = serializers.BooleanField(default=False)
+    is_team = serializers.BooleanField(default=False)
+    is_management_leadership = serializers.BooleanField(default=False)
+
     class Meta:
         model = Place
         fields = [
