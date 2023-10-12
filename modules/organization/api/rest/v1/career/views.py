@@ -27,7 +27,7 @@ from modules.domain.models import (
 )
 from modules.common.permissions import CustomerPermission
 
-from .serializer import (
+from .serializers import (
     GradeSerializer,
     GenderSerializer,
     JobLevelSerializer,
