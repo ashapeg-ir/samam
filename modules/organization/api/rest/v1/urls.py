@@ -13,15 +13,17 @@ from modules.organization.api.rest.v1.views import (
 
 router = SimpleRouter()
 
-router.register("place", PlaceViewSet, basename="place")
-router.register("place-account-type", PlaceAccountTypeViewSet, basename="place-account-type")
-router.register("country", CountryViewSet, basename="country")
-router.register("province", ProvinceViewSet, basename="province")
-router.register("city", CityViewSet, basename="city")
+router.register("places", PlaceViewSet, basename="place")
+router.register("place-account-types", PlaceAccountTypeViewSet, basename="place-account-type")
+router.register("countries", CountryViewSet, basename="country")
+router.register("provinces", ProvinceViewSet, basename="province")
+router.register("cities", CityViewSet, basename="city")
 router.register("", OrganizationViewSet, basename="org")
 urlpatterns = [
-    path("palace/", include("modules.organization.api.rest.v1.palace.urls")),
-    path("department/", include("modules.organization.api.rest.v1.department.urls")),
+    path("palaces/", include("modules.organization.api.rest.v1.palace.urls")),
+    path("departments/", include("modules.organization.api.rest.v1.department.urls")),
     path("career/", include("modules.organization.api.rest.v1.career.urls")),
+    path("users/", include("modules.organization.api.rest.v1.users.urls")),
+    path("positions/", include("modules.organization.api.rest.v1.position.urls")),
 ]
 urlpatterns += router.urls

@@ -78,3 +78,8 @@ class Profile(OrganizationModelMixin, TimestampedModelMixin):
         null=True,
         blank=True,
     )
+
+    class Meta:
+        db_table = "samam_profile"
+        verbose_name = _("Profile")
+        verbose_name_plural = _("Profiles")

@@ -20,7 +20,7 @@ from .career import (
     ElectronicAnnouncementTitle,
 )
 from .palace import Palace, PalaceKind, PalaceLevel, PalaceStatus, PalaceAccountType, PalaceOwnershipType
-from .region import City, Country, Province
+from .region import City, Country, Province, ResidentialArea
 from .profile import Profile
 from .language import LanguageCaption, get_message
 from .position import Position, EmploymentType, EmploymentStatus

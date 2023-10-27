@@ -26,8 +26,9 @@ class EmploymentStatus(OrganizationModelMixin, TimestampedModelMixin):  # وضع
         verbose_name_plural = _("Employment Statuses")
 
 
-class Position(OrganizationModelMixin, TimestampedModelMixin):
+class Position(OrganizationModelMixin, TimestampedModelMixin):  # انتصابات
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="%(class)ss")
+    is_main = models.BooleanField(default=False, verbose_name=_("is main job"))
     organization_graph = models.ForeignKey("OrganizationGraph", on_delete=models.CASCADE, related_name="%(class)ss")
     employment_type = models.ForeignKey("EmploymentType", on_delete=models.CASCADE, related_name="%(class)ss")
     city = models.ForeignKey("City", on_delete=models.CASCADE, related_name="%(class)ss")
