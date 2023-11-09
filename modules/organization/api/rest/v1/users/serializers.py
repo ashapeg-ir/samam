@@ -1,18 +1,19 @@
 from rest_framework import serializers
+
 from modules.domain.models import (
     User,
-    Profile,
-    Organization,
-    Gender,
     Grade,
-    ResidentialArea,
+    Gender,
+    Profile,
+    Religion,
     BloodType,
+    Occupation,
+    FieldOfStudy,
+    Organization,
     MaritalStatus,
     MilitaryStatus,
-    Religion,
-    Occupation,
+    ResidentialArea,
     DegreeCompliance,
-    FieldOfStudy,
     OrganizationNickname,
 )
 

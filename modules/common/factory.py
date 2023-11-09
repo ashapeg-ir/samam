@@ -1,4 +1,5 @@
 import factory
+
 from modules.domain.models import User
 
 

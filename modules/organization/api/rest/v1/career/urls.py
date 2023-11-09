@@ -2,25 +2,25 @@ from rest_framework.routers import SimpleRouter
 
 from .views import (
     GenderViewSet,
-    OrganizationGraphViewSet,
-    OrganizationLevelViewSet,
-    OrganizationNicknameViewSet,
     JobLevelViewSet,
-    GradeSerializerViewSet,
     RelationViewSet,
     ReligionViewSet,
     BloodTypeViewSet,
     OccupationViewSet,
     CareerFieldViewSet,
     CareerGroupViewSet,
-    ElectronicAnnouncementTitleViewSet,
     FieldOfStudyViewSet,
-    MilitaryStatusViewSet,
     MaritalStatusViewSet,
     EmploymentTypeViewSet,
+    MilitaryStatusViewSet,
     EmploymentStateViewSet,
+    GradeSerializerViewSet,
     DegreeComplianceViewSet,
     EmploymentStatusViewSet,
+    OrganizationGraphViewSet,
+    OrganizationLevelViewSet,
+    OrganizationNicknameViewSet,
+    ElectronicAnnouncementTitleViewSet,
 )
 
 router = SimpleRouter()

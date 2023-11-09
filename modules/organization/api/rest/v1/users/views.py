@@ -1,13 +1,10 @@
-from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin
+from rest_framework.viewsets import GenericViewSet
 
-from .serializers import (
-    UserListSerializer,
-    UserCreateSerializer,
-    UserUpdateSerializer,
-)
 from modules.domain.models import Profile
 from modules.common.permissions import CustomerPermission
+
+from .serializers import UserListSerializer, UserCreateSerializer, UserUpdateSerializer
 
 
 class UserViewSet(GenericViewSet, ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin):

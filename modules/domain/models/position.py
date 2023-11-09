@@ -40,3 +40,8 @@ class Position(OrganizationModelMixin, TimestampedModelMixin):  # انتصابا
     email = models.EmailField(verbose_name=_("email"), null=True, blank=True)
     employment_status = models.ForeignKey("EmploymentStatus", on_delete=models.CASCADE, related_name="%(class)ss")
     job_level = models.ForeignKey("JobLevel", on_delete=models.CASCADE, related_name="%(class)ss")
+
+    class Meta:
+        db_table = "samam_position"
+        verbose_name = _("Position")
+        verbose_name_plural = _("Positions")

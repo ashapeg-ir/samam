@@ -1,7 +1,8 @@
-from modules.organization.api.rest.v1.position.serializers import PositionSerializer
-from modules.domain.models import Position, Organization
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin
 from rest_framework.viewsets import GenericViewSet
+
+from modules.domain.models import Position, Organization
+from modules.organization.api.rest.v1.position.serializers import PositionSerializer
 
 
 class PositionViewSet(GenericViewSet, ListModelMixin, CreateModelMixin, RetrieveModelMixin):

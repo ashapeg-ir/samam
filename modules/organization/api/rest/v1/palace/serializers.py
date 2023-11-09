@@ -1,6 +1,15 @@
 from rest_framework import exceptions, serializers
 
-from modules.domain.models import City,  Palace, PalaceKind, PalaceLevel, PalaceStatus, PalaceAccountType, PalaceOwnershipType, Organization
+from modules.domain.models import (
+    City,
+    Palace,
+    PalaceKind,
+    PalaceLevel,
+    Organization,
+    PalaceStatus,
+    PalaceAccountType,
+    PalaceOwnershipType,
+)
 
 
 class PalaceOwnershipSerializer(serializers.ModelSerializer):

@@ -2,9 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from mptt.models import MPTTModel, TreeManager, TreeForeignKey
-from model_utils.models import SoftDeletableModel
 
-from modules.common.models import PalaceModelMixin, ActivatedModelMixin, TimestampedModelMixin, OrganizationModelMixin
+from modules.common.models import PalaceModelMixin, ActivatedModelMixin, TimestampedModelMixin, OrganizationModelMixin, UserModelMixin
 
 
 class DepartmentOwnershipType(OrganizationModelMixin, TimestampedModelMixin, PalaceModelMixin):
@@ -64,13 +63,15 @@ class Department(PalaceModelMixin, OrganizationModelMixin, TimestampedModelMixin
         return self.place.name
 
 
-class TeamDistribution(OrganizationModelMixin, PalaceModelMixin, TimestampedModelMixin, ActivatedModelMixin):
+class TeamDistribution(OrganizationModelMixin, UserModelMixin, TimestampedModelMixin, ActivatedModelMixin):
     department = models.ForeignKey(
         Department,
         verbose_name=_("department"),
         on_delete=models.CASCADE,
         related_name="%(class)ss",
+        limit_choices_to={"place__is_team": True}
     )
+    name = models.CharField(max_length=200, blank=False, null=False)
 
     class Meta:
         db_table = "samam_palace_team_distribution"

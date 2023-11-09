@@ -1,8 +1,8 @@
 """
 Base settings to build other settings files upon.
 """
-from datetime import timedelta
 from pathlib import Path
+from datetime import timedelta
 
 from django.utils.translation import gettext_lazy as _
 
