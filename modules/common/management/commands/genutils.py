@@ -115,7 +115,7 @@ class Command(BaseCommand):
                 # gender=Gender.objects.get(id=1),
                 is_active=True,
                 is_verified=True,
-                is_customer=True,
+                is_supervisor=True,
             )
             org = Organization.objects.create(
                 customer=user,

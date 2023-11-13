@@ -3,9 +3,27 @@ from django.utils.translation import gettext_lazy as _
 
 from modules.common.models import TimestampedModelMixin, OrganizationModelMixin
 from modules.domain.models import User
+from djchoices.choices import ChoiceItem, DjangoChoices
 
 
 class Profile(OrganizationModelMixin, TimestampedModelMixin):
+    class Status(DjangoChoices):
+        occupied = ChoiceItem(1, "occupied")  # مشغول به کار
+        earned_leave = ChoiceItem(2, "earned leave")  # مرخصی
+        medical_leave = ChoiceItem(3, "medical leave")  # مرخصی استعلاجی
+        academic_leave = ChoiceItem(4, "academic leave")  # مرخصی تحصیلی
+        disability_leave = ChoiceItem(5, "disability leave")  # مرخصی صعب الاج
+        unpaid_leave = ChoiceItem(6, "unpaid leave")  # مرخصی بدون حقوق
+        excused_absence = ChoiceItem(7, "excused absence")  # غیبت موجه
+        unexcused_absence = ChoiceItem(8, "unexcused absence")  # غیبت غیر موجه
+        retirement = ChoiceItem(9, "retirement")   # بازنشستگی
+        resignation = ChoiceItem(10, "resignation")  # انصراف
+        death = ChoiceItem(11, "death")  # مرگ
+        partial_disability = ChoiceItem(12, "partial disability")  # ازکارافتادگی جزعی
+        general_lethargy = ChoiceItem(13, "general lethargy")  # ازکارافتادگی کلی
+        on_mission = ChoiceItem(14, "on mission")  # ماموریت
+        academic_mission = ChoiceItem(15, "academic mission")  # ماموریت تحصیلی
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.ForeignKey("Gender", on_delete=models.CASCADE, related_name="%(class)ss", null=True, blank=True)
     city = models.ForeignKey("City", on_delete=models.CASCADE, related_name="%(class)ss", null=True, blank=True)
@@ -66,6 +84,7 @@ class Profile(OrganizationModelMixin, TimestampedModelMixin):
         null=True,
         blank=True,
     )
+    status = models.IntegerField(choices=Status.choices, db_index=True, null=False, blank=False)
     personnel_code = models.CharField(max_length=10, verbose_name=_("personnel code"), null=True, blank=True)
     picture = models.ImageField(null=True, blank=True, upload_to="profile", verbose_name=_("picture"))
     phone = models.CharField(max_length=15, verbose_name=_("phone"))

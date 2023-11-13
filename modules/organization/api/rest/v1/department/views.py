@@ -4,14 +4,14 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework.viewsets import GenericViewSet
 
 from modules.domain.models import Department, Organization, TeamDistribution
-from modules.common.permissions import CustomerPermission
+from modules.common.permissions import SupervisorPermission
 from modules.organization.api.rest.v1.department.serializers import DepartmentSerializer, TeamDistributionSerializer
 
 
 class DepartmentViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
     queryset = Department.objects.none()
     serializer_class = DepartmentSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
     parser_classes = [MultiPartParser]
 
     def get_queryset(self):
@@ -26,7 +26,7 @@ class DepartmentViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, Li
 class TeamDistributionViewSet(GenericViewSet, CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin):
     queryset = TeamDistribution.objects.none()
     serializer_class = TeamDistributionSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return TeamDistribution.objects.filter(organization__customer_id=self.request.user.id)

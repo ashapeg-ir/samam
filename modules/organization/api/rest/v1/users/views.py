@@ -2,14 +2,14 @@ from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelM
 from rest_framework.viewsets import GenericViewSet
 
 from modules.domain.models import Profile
-from modules.common.permissions import CustomerPermission
+from modules.common.permissions import SupervisorPermission
 
 from .serializers import UserListSerializer, UserCreateSerializer, UserUpdateSerializer
 
 
 class UserViewSet(GenericViewSet, ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin):
     queryset = Profile.objects.none()
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
     serializers = {
         "list": UserListSerializer,
         "create": UserCreateSerializer,

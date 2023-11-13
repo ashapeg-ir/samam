@@ -16,10 +16,10 @@ class User(AbstractUser):
         default=False,
         help_text=_("Designates if this user has been verified."),
     )
-    is_customer = models.BooleanField(
-        _("is customer"),
+    is_supervisor = models.BooleanField(
+        _("is supervisor"),
         default=False,
-        help_text=_("Designates whether the user is customer or not"),
+        help_text=_("Designates whether the user is supervisor or not"),
     )
     username = models.CharField(max_length=150, unique=True, verbose_name=_("username"))
     USERNAME_FIELD = "username"

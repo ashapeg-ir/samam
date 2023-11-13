@@ -13,7 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["username", "email", "first_name", "last_name", "is_customer", "is_superuser", "is_staff", "is_active"]
+        fields = ["username", "email", "first_name", "last_name", "is_supervisor", "is_superuser", "is_staff", "is_active"]
 
 
 @admin.register(User)
@@ -27,7 +27,7 @@ class CustomUserAdmin(UserAdmin):
             {
                 "fields": [
                     "username",
-                    "is_customer",
+                    "is_supervisor",
                     "is_active",
                     "is_verified",
                     "is_staff",

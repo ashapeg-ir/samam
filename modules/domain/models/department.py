@@ -3,7 +3,13 @@ from django.utils.translation import gettext_lazy as _
 
 from mptt.models import MPTTModel, TreeManager, TreeForeignKey
 
-from modules.common.models import PalaceModelMixin, ActivatedModelMixin, TimestampedModelMixin, OrganizationModelMixin, UserModelMixin
+from modules.common.models import (
+    UserModelMixin,
+    PalaceModelMixin,
+    ActivatedModelMixin,
+    TimestampedModelMixin,
+    OrganizationModelMixin,
+)
 
 
 class DepartmentOwnershipType(OrganizationModelMixin, TimestampedModelMixin, PalaceModelMixin):

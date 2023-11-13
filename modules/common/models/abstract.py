@@ -86,7 +86,7 @@ class UserModelMixin(models.Model):
     """
 
     user = models.ForeignKey(
-        "domain.User", on_delete=models.CASCADE, related_name="%(class)ss"
+        "domain.User", on_delete=models.CASCADE, related_name="%(class)ss", db_index=True
     )
 
     class Meta:
@@ -99,7 +99,7 @@ class CustomerModelMixin(models.Model):
     """
 
     customer = models.ForeignKey(
-        "domain.User", on_delete=models.CASCADE, related_name="%(class)ss", limit_choices_to={"is_customer": True}
+        "domain.User", on_delete=models.CASCADE, related_name="%(class)ss", limit_choices_to={"is_supervisor": True}
     )
 
     class Meta:

@@ -25,7 +25,7 @@ from modules.domain.models import (
     OrganizationNickname,
     ElectronicAnnouncementTitle,
 )
-from modules.common.permissions import CustomerPermission
+from modules.common.permissions import SupervisorPermission
 
 from .serializers import (
     GradeSerializer,
@@ -54,7 +54,7 @@ from .serializers import (
 class GenderViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = Gender.objects.none()
     serializer_class = GenderSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return Gender.objects.filter(organization__customer_id=self.request.user)
@@ -68,7 +68,7 @@ class GenderViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveMo
 class OrganizationLevelViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = OrganizationLevel.objects.none()
     serializer_class = OrganizationLevelSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return OrganizationLevel.objects.filter(organization__customer_id=self.request.user)
@@ -82,7 +82,7 @@ class OrganizationLevelViewSet(GenericViewSet, CreateModelMixin, ListModelMixin,
 class OrganizationNicknameViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = OrganizationNickname.objects.none()
     serializer_class = OrganizationNicknameSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return OrganizationNickname.objects.filter(organization__customer_id=self.request.user)
@@ -96,7 +96,7 @@ class OrganizationNicknameViewSet(GenericViewSet, CreateModelMixin, ListModelMix
 class OrganizationGraphViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = OrganizationGraph.objects.none()
     serializer_class = OrganizationGraphSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return OrganizationGraph.objects.filter(organization__customer_id=self.request.user)
@@ -110,7 +110,7 @@ class OrganizationGraphViewSet(GenericViewSet, CreateModelMixin, ListModelMixin,
 class JobLevelViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = JobLevel.objects.none()
     serializer_class = JobLevelSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return JobLevel.objects.filter(organization__customer_id=self.request.user)
@@ -124,7 +124,7 @@ class JobLevelViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retrieve
 class GradeSerializerViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = Grade.objects.none()
     serializer_class = GradeSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return Grade.objects.filter(organization__customer_id=self.request.user)
@@ -138,7 +138,7 @@ class GradeSerializerViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, R
 class RelationViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = Relation.objects.none()
     serializer_class = RelationSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return Relation.objects.filter(organization__customer_id=self.request.user)
@@ -152,7 +152,7 @@ class RelationViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retrieve
 class ReligionViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = Religion.objects.none()
     serializer_class = ReligionSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return Religion.objects.filter(organization__customer_id=self.request.user)
@@ -166,7 +166,7 @@ class ReligionViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retrieve
 class BloodTypeViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = BloodType.objects.none()
     serializer_class = BloodTypeSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return BloodType.objects.filter(organization__customer_id=self.request.user)
@@ -180,7 +180,7 @@ class BloodTypeViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retriev
 class OccupationViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = Occupation.objects.none()
     serializer_class = OccupationSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return Occupation.objects.filter(organization__customer_id=self.request.user)
@@ -194,7 +194,7 @@ class OccupationViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retrie
 class CareerFieldViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = CareerField.objects.none()
     serializer_class = CareerFieldSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return CareerField.objects.filter(organization__customer_id=self.request.user)
@@ -208,7 +208,7 @@ class CareerFieldViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retri
 class CareerGroupViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = CareerGroup.objects.none()
     serializer_class = CareerGroupSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return CareerGroup.objects.filter(organization__customer_id=self.request.user)
@@ -222,7 +222,7 @@ class CareerGroupViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retri
 class ElectronicAnnouncementTitleViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = ElectronicAnnouncementTitle.objects.none()
     serializer_class = ElectronicAnnouncementTitleSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return ElectronicAnnouncementTitle.objects.filter(organization__customer_id=self.request.user)
@@ -236,7 +236,7 @@ class ElectronicAnnouncementTitleViewSet(GenericViewSet, CreateModelMixin, ListM
 class FieldOfStudyViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = FieldOfStudy.objects.none()
     serializer_class = FieldOfStudySerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return FieldOfStudy.objects.filter(organization__customer_id=self.request.user)
@@ -250,7 +250,7 @@ class FieldOfStudyViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retr
 class MilitaryStatusViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = MilitaryStatus.objects.none()
     serializer_class = MilitaryStatusSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return MilitaryStatus.objects.filter(organization__customer_id=self.request.user)
@@ -264,7 +264,7 @@ class MilitaryStatusViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Re
 class MaritalStatusViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = MaritalStatus.objects.none()
     serializer_class = MaritalStatusSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return MaritalStatus.objects.filter(organization__customer_id=self.request.user)
@@ -278,7 +278,7 @@ class MaritalStatusViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Ret
 class EmploymentTypeViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = EmploymentType.objects.none()
     serializer_class = EmploymentTypeSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return EmploymentType.objects.filter(organization__customer_id=self.request.user)
@@ -292,7 +292,7 @@ class EmploymentTypeViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Re
 class EmploymentStateViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = EmploymentState.objects.none()
     serializer_class = EmploymentStateSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return EmploymentState.objects.filter(organization__customer_id=self.request.user)
@@ -306,7 +306,7 @@ class EmploymentStateViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, R
 class DegreeComplianceViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = DegreeCompliance.objects.none()
     serializer_class = DegreeComplianceSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return DegreeCompliance.objects.filter(organization__customer_id=self.request.user)
@@ -320,7 +320,7 @@ class DegreeComplianceViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, 
 class EmploymentStatusViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = EmploymentStatus.objects.none()
     serializer_class = EmploymentStatusSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return EmploymentStatus.objects.filter(organization__customer_id=self.request.user)

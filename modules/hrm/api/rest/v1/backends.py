@@ -15,12 +15,12 @@ class CustomerPhoneLoginOrRegisterBackend(ModelBackend):
         username = username
         if AuthBusinessV1.verify_sms_code(username=username, code=password):
             try:
-                user = User.objects.get(username=username, is_customer=True)
+                user = User.objects.get(username=username, is_supervisor=True)
             except User.DoesNotExist:
                 user = User.objects.create(
                     username=username,
                     is_active=True,
-                    is_customer=True,
+                    is_supervisor=True,
                 )
         else:
             raise AuthenticationFailed(
@@ -36,7 +36,7 @@ class CustomerPhoneLoginOrRegisterBackend(ModelBackend):
 def user_authenticate(request, username, password, **kwargs):
 
     try:
-        user = User.objects.get(username=username, is_active=True, is_verified=True, is_customer=False)
+        user = User.objects.get(username=username, is_active=True, is_verified=True, is_supervisor=False)
     except User.DoesNotExist:
         raise AuthenticationFailed(
             _("dear user you are not active or you are not part of the system please contact the administrator.")

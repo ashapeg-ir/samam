@@ -45,7 +45,7 @@ class CustomTokenObtainPairSerializer(TokenObtainSerializer):
         data["first_name"] = self.user.first_name
         data["last_name"] = self.user.last_name
         data["is_active"] = self.user.is_verified
-        data["is_customer"] = self.user.is_customer
+        data["is_supervisor"] = self.user.is_supervisor
         if api_settings.UPDATE_LAST_LOGIN:
             update_last_login(None, self.user)
 
@@ -81,7 +81,7 @@ class UserLoginSerializer(TokenObtainSerializer):
             "first_name": self.user.first_name,
             "last_name": self.user.last_name,
             "is_active": self.user.is_verified,
-            "is_customer": self.user.is_customer,
+            "is_supervisor": self.user.is_supervisor,
         }
         if api_settings.UPDATE_LAST_LOGIN:
             update_last_login(None, self.user)

@@ -7,7 +7,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from modules.domain.models import City, Place, Country, Province, Organization, PlaceAccountType, get_message
 from modules.common.messages import samam
-from modules.common.permissions import CustomerPermission
+from modules.common.permissions import SupervisorPermission
 from modules.organization.api.rest.v1.serializers import (
     CitySerializer,
     PlaceSerializer,
@@ -21,7 +21,7 @@ from modules.organization.api.rest.v1.serializers import (
 class OrganizationViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = Organization.objects.all()
     serializer_class = OrganizationSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return Organization.objects.filter(customer_id=self.request.user.id)
@@ -50,7 +50,7 @@ class OrganizationViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retr
 class PlaceViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = Place.objects.none()
     serializer_class = PlaceSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return Place.objects.filter(organization__customer_id=self.request.user)
@@ -75,7 +75,7 @@ class PlaceViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveMod
 class CountryViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = Country.objects.none()
     serializer_class = CountrySerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return Country.objects.filter(organization__customer_id=self.request.user)
@@ -84,7 +84,7 @@ class CountryViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveM
 class ProvinceViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = Province.objects.none()
     serializer_class = ProvinceSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return Province.objects.filter(organization__customer_id=self.request.user)
@@ -93,7 +93,7 @@ class ProvinceViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, Retrieve
 class CityViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = City.objects.none()
     serializer_class = CitySerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return City.objects.filter(organization__customer_id=self.request.user)
@@ -102,7 +102,7 @@ class CityViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveMode
 class PlaceAccountTypeViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     queryset = PlaceAccountType.objects.none()
     serializer_class = PlaceAccountTypeSerializer
-    permission_classes = [CustomerPermission]
+    permission_classes = [SupervisorPermission]
 
     def get_queryset(self):
         return PlaceAccountType.objects.filter(organization__customer_id=self.request.user.id)

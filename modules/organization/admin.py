@@ -15,6 +15,7 @@ from modules.domain.models import (
     Department,
     Occupation,
     PalaceKind,
+    Supervisor,
     CareerField,
     CareerGroup,
     PalaceLevel,
@@ -40,7 +41,7 @@ from modules.domain.models import (
 
 @admin.register(TeamDistribution)
 class TeamDistributionAdmin(admin.ModelAdmin):
-    list_display = ["department", "palace", "organization", "created", "updated"]
+    list_display = ["department", "organization", "created", "updated"]
 
 
 @admin.register(CareerGroup)
@@ -213,3 +214,8 @@ class CityAdmin(admin.ModelAdmin):
 @admin.register(LanguageCaption)
 class LanguageCaptionAdmin(admin.ModelAdmin):
     list_display = ["title", "is_editable", "language", "code", "organization"]
+
+
+@admin.register(Supervisor)
+class SupervisorAdmin(admin.ModelAdmin):
+    list_display = ["organization", "user", "palace", "is_active", "created", "updated"]
