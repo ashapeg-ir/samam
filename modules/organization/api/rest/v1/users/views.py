@@ -1,15 +1,15 @@
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin
 from rest_framework.viewsets import GenericViewSet
-
+from rest_framework.parsers import FormParser, MultiPartParser
 from modules.domain.models import Profile
-from modules.common.permissions import SupervisorPermission
-
+from rest_framework.permissions import AllowAny
 from .serializers import UserListSerializer, UserCreateSerializer, UserUpdateSerializer
 
 
 class UserViewSet(GenericViewSet, ListModelMixin, CreateModelMixin, UpdateModelMixin, RetrieveModelMixin):
     queryset = Profile.objects.none()
-    permission_classes = [SupervisorPermission]
+    permission_classes = [AllowAny]
+    parser_classes = [FormParser, MultiPartParser]
     serializers = {
         "list": UserListSerializer,
         "create": UserCreateSerializer,

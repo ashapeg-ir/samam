@@ -7,7 +7,6 @@ from modules.domain.models import (
     Profile,
     Religion,
     BloodType,
-    Occupation,
     FieldOfStudy,
     Organization,
     MaritalStatus,
@@ -30,6 +29,7 @@ class UserCreateSerializer(serializers.Serializer):
         required=True,
         queryset=Organization.objects.all(),
     )
+    status = serializers.IntegerField(allow_null=False, required=True, min_value=1, max_value=21)
     gender = serializers.PrimaryKeyRelatedField(
         allow_null=False,
         required=True,
@@ -138,6 +138,7 @@ class UserCreateSerializer(serializers.Serializer):
         user.save()
         profile = Profile.objects.create(
             user=user,
+            status=validated_data["status"],
             gender_id=validated_data["gender"],
             organization_id=validated_data["organization"],
             city_id=validated_data["city"],
