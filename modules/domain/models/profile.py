@@ -7,6 +7,7 @@ from djchoices.choices import ChoiceItem, DjangoChoices
 
 
 class Profile(OrganizationModelMixin, TimestampedModelMixin):
+
     class Status(DjangoChoices):
         occupied = ChoiceItem(1, "occupied")  # مشغول به کار
         earned_leave = ChoiceItem(2, "earned leave")  # مرخصی
@@ -23,6 +24,12 @@ class Profile(OrganizationModelMixin, TimestampedModelMixin):
         general_lethargy = ChoiceItem(13, "general lethargy")  # ازکارافتادگی کلی
         on_mission = ChoiceItem(14, "on mission")  # ماموریت
         academic_mission = ChoiceItem(15, "academic mission")  # ماموریت تحصیلی
+        women_part_time = ChoiceItem(16, "women part time")  # طرح نیمه وقت بانوان
+        pcwp = ChoiceItem(17, "Participants in the coefficient workforce plan")  # مشمولین طرح نیروی ضریب
+        pddw = ChoiceItem(18, "Partially disabled due to work")  # از کارافتاده جزئی ناشی از کار
+        pfcw = ChoiceItem(19, "Partial failure not caused by work")  # از کار افتاده جزیی غیر ناشی از کار
+        wrtd = ChoiceItem(20, "Work-related total disability")  # از کار افتاده کلی ناشی از کار
+        nrtd = ChoiceItem(21, "Non-work related total disability")  # از کار افتاده کلی غیر ناشی از کار
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.ForeignKey("Gender", on_delete=models.CASCADE, related_name="%(class)ss", null=True, blank=True)
@@ -84,7 +91,7 @@ class Profile(OrganizationModelMixin, TimestampedModelMixin):
         null=True,
         blank=True,
     )
-    status = models.IntegerField(choices=Status.choices, db_index=True, null=False, blank=False)
+    status = models.PositiveSmallIntegerField(choices=Status.choices, db_index=True, null=False, blank=False)
     personnel_code = models.CharField(max_length=10, verbose_name=_("personnel code"), null=True, blank=True)
     picture = models.ImageField(null=True, blank=True, upload_to="profile", verbose_name=_("picture"))
     phone = models.CharField(max_length=15, verbose_name=_("phone"))

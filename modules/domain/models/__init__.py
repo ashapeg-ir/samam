@@ -25,5 +25,5 @@ from .profile import Profile
 from .language import LanguageCaption, get_message
 from .position import Position, EmploymentType, EmploymentStatus
 from .department import Department, DepartmentStatus, TeamDistribution, DepartmentOwnershipType
-from .supervisor import Supervisor
+from .supervisor import PalaceSupervisor
 from .organization import Place, Organization, PlaceAccountType

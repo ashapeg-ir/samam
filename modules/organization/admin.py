@@ -15,7 +15,7 @@ from modules.domain.models import (
     Department,
     Occupation,
     PalaceKind,
-    Supervisor,
+    PalaceSupervisor,
     CareerField,
     CareerGroup,
     PalaceLevel,
@@ -216,6 +216,6 @@ class LanguageCaptionAdmin(admin.ModelAdmin):
     list_display = ["title", "is_editable", "language", "code", "organization"]
 
 
-@admin.register(Supervisor)
+@admin.register(PalaceSupervisor)
 class SupervisorAdmin(admin.ModelAdmin):
     list_display = ["organization", "user", "palace", "is_active", "created", "updated"]

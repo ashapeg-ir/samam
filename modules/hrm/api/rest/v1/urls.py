@@ -1,8 +1,8 @@
 from rest_framework.routers import SimpleRouter
 
-from modules.hrm.api.rest.v1.views import UserLoginViewSet, CustomerLoginViewSet
+from modules.hrm.api.rest.v1.views import SupervisorLoginViewSet
 
 router = SimpleRouter()
-router.register('customer', CustomerLoginViewSet, basename='auth-customer')
-router.register('user', UserLoginViewSet, basename='auth-user')
+router.register('supervisor', SupervisorLoginViewSet, basename='auth-supervisor')
+
 urlpatterns = router.urls

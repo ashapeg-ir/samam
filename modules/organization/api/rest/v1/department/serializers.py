@@ -55,6 +55,8 @@ class TeamDistributionSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeamDistribution
         fields = [
+            "name",
+            "user",
             "department",
             "organization",
             "is_active",
